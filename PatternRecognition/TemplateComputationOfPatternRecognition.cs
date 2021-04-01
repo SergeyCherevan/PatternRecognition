@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace PatternRecognition
 {
-    public class TemplatePatternRecognition<COLOUR>
+    public class TemplateComputationOfPatternRecognition<COLOUR>
         where COLOUR : struct
     {
         Func<Color, COLOUR> ColourFunc;
         Predicate<(COLOUR, COLOUR)> DifBeetwinColours;
 
-        public TemplatePatternRecognition(
+        public TemplateComputationOfPatternRecognition(
                     Func<Color, COLOUR> F, Predicate<(COLOUR, COLOUR)> P
             ) { ColourFunc = F; DifBeetwinColours = P; }
 
@@ -22,9 +22,9 @@ namespace PatternRecognition
 
         COLOUR[,] pointsM;
 
-        Bitmap bitmapIn;
+        Bitmap bitmapIn = null;
 
-        Bitmap bitmapOut;
+        Bitmap bitmapOut = null;
 
         public void CreatePointsArrFromImage(Image image)
         {
@@ -43,13 +43,12 @@ namespace PatternRecognition
         /*-----------------------------------------------------*/
 
         public Pixel<COLOUR>[,] pixelsM;
-        // public LinkedList<Pixel<COLOUR>> freePixels;
-        public LinkedList<Figure<COLOUR>> figList = new LinkedList<Figure<COLOUR>>();
+
+        public LinkedList<Figure<COLOUR>> figureList = new LinkedList<Figure<COLOUR>>();
 
         public void CreateFreePixelsAndPixelsM()
         {
             pixelsM = new Pixel<COLOUR>[pointsM.GetLength(0), pointsM.GetLength(1)];
-            // freePixels = new LinkedList<Pixel<COLOUR>>();
 
             for(int _y = 0; _y < pointsM.GetLength(0); _y++)
             {
@@ -59,28 +58,30 @@ namespace PatternRecognition
                         { color = pointsM[_y, _x], x = _x, y = _y };
 
                     pixelsM[_y, _x] = p;
-
-                    // freePixels.AddLast(p);
                 }
             }
         }
 
         /*-----------------------------------------------------*/
 
+        public volatile int countOfProcessedPixels;
+
         public void GroupPixelsByFigures()
         {
             Pixel<COLOUR> p;
 
-            while ( (p = NextFreePixel()) != null) /*freePixels.Count > 0*/
+            lock (this) countOfProcessedPixels = 0;
+
+            while ( (p = NextFreePixel()) != null)
             {
-                // Pixel<COLOUR> p = freePixels.First();
+                lock (this) countOfProcessedPixels++;
 
                 Figure<COLOUR> currFig = new Figure<COLOUR> {
                     color = p.color,
-                    ID = figList.Count
+                    ID = figureList.Count
                 };
 
-                figList.AddLast(currFig);
+                figureList.AddLast(currFig);
 
                 FindAllPixelsOfFigure(p, currFig);                
             }
@@ -115,7 +116,7 @@ namespace PatternRecognition
 
                 fig.pixels.AddLast(p);
 
-                // freePixels.Remove(p);
+                lock (this) countOfProcessedPixels++;
 
 
 
@@ -162,9 +163,45 @@ namespace PatternRecognition
             return x >= 0 && y >= 0 && x < pixelsM.GetLength(1) && y < pixelsM.GetLength(0);
         }
 
-        Image RecolorImage()
+        public Image RecolorImage(List<Color> colors)
         {
-            return null;
+            if (colors == null)
+            {
+                Random r = new Random();
+
+                int size = 10 + r.Next(10);
+
+                colors = new List<Color>(size);
+
+                for(int i = 0; i < size; i++)
+                {
+                    colors.Add(Color.FromArgb(0xff, r.Next(0, 0x100), r.Next(0, 0x100), r.Next(0, 0x100)));
+                }
+            }
+
+            bitmapOut = bitmapIn.Clone() as Bitmap;
+
+            var colorEnumenator = colors.GetEnumerator();
+
+            foreach (Figure<COLOUR> figure in figureList)
+            {
+                /* Вызываем colorEnumenator.MoveNext() - инкрементируем перечислитель.
+                 * Теперь в его colorEnumenator.Current хранится новый цвет.
+                 * Если бобик сдох, то закадываем в него начало коллекции. */
+
+                if (!colorEnumenator.MoveNext())
+                {
+                    colorEnumenator = colors.GetEnumerator();
+                    colorEnumenator.MoveNext();
+                }
+
+                foreach (Pixel<COLOUR> pixel in figure.pixels)
+                {
+                    bitmapOut.SetPixel(pixel.x, pixel.y, colorEnumenator.Current);
+                }
+            }
+
+            return bitmapOut;
         }
     }
 }
