@@ -11,7 +11,14 @@ namespace PatternRecognition
 {
     public class ManagerOfPatternRecognComputation
     {
-        public string ColorPalette { get; set; } = "white/black";
+        public enum VariantOfPatternRecognition
+        {
+            White_Black,
+            Multycolor,
+            MultycolorWithSmoothBorder,
+        }
+
+        public VariantOfPatternRecognition Variant { get; set; } = VariantOfPatternRecognition.White_Black;
 
         public Image ImageIn { get; set; } = null;
 
@@ -31,9 +38,9 @@ namespace PatternRecognition
         {
             DateTime time = DateTime.Now;
 
-            switch (ColorPalette)
+            switch (Variant)
             {
-                case "white/black":
+                case VariantOfPatternRecognition.White_Black:
                     {
                         PatternRecognResult
 
@@ -45,7 +52,7 @@ namespace PatternRecognition
                     break;
 
 
-                case "multycolor":
+                case VariantOfPatternRecognition.Multycolor:
                     {
                         PatternRecognResult
 
@@ -57,7 +64,7 @@ namespace PatternRecognition
                     break;
 
 
-                case "multycolor with smooth border":
+                case VariantOfPatternRecognition.MultycolorWithSmoothBorder:
                     {
                         PatternRecognResult
 
@@ -74,15 +81,8 @@ namespace PatternRecognition
 
                 default:
                     {
-                        var rightValueOfColorPalette = new List<string>
-                        {
-                            "white/black",
-                            "multycolor",
-                            "multycolor with smooth border"
-                        };
 
-                        throw new ArgumentException($"\"{ColorPalette}\" is invalid value for argument. \n" +
-                            "There are right values of this property: \n" + String.Join("\n", rightValueOfColorPalette));
+                        throw new Exception($"\"Method Computate() can not processed value {Variant} as variant of pattern recognition.");
                     }
             }
 

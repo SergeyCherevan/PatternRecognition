@@ -64,18 +64,19 @@ namespace PatternRecognition
 
         /*-----------------------------------------------------*/
 
-        public volatile int countOfProcessedPixels;
+        public class CountVariableLocker { public volatile int counter; }
+        public CountVariableLocker locker = new CountVariableLocker();
+
+        FreePixels freePixels;
 
         public void GroupPixelsByFigures()
         {
-            Pixel<COLOUR> p;
+            freePixels = new FreePixels(this);
 
-            lock (this) countOfProcessedPixels = 0;
+            lock (locker) locker.counter = 0;
 
-            while ( (p = NextFreePixel()) != null)
+            foreach (Pixel<COLOUR> p in freePixels)
             {
-                lock (this) countOfProcessedPixels++;
-
                 Figure<COLOUR> currFig = new Figure<COLOUR> {
                     color = p.color,
                     ID = figureList.Count
@@ -87,19 +88,33 @@ namespace PatternRecognition
             }
         }
 
-        public Pixel<COLOUR> NextFreePixel()
+        public class FreePixels
         {
-            for (int y = 0; y < pixelsM.GetLength(0); y++)
-            {
-                for (int x = 0; x < pixelsM.GetLength(1); x++)
-                {
-                    Pixel<COLOUR> pixel = pixelsM[y, x];
+            public TemplateComputationOfPatternRecognition<COLOUR> envClass { get; private set; }
 
-                    if (pixel.figure == null) return pixel;
-                }
+            public FreePixels(TemplateComputationOfPatternRecognition<COLOUR> envClass) {
+
+                this.envClass = envClass;
             }
 
-            return null;
+            public int x { get; private set; }
+
+            public int y { get; private set; }
+
+            public IEnumerator<Pixel<COLOUR>> GetEnumerator()
+            {
+                for (y = 0; y < envClass.pixelsM.GetLength(0); y++)
+                {
+                    for (x = 0; x < envClass.pixelsM.GetLength(1); x++)
+                    {
+                        Pixel<COLOUR> pixel = envClass.pixelsM[y, x];
+
+                        if (pixel.figure == null) yield return pixel;
+                    }
+                }
+
+                yield break;
+            }
         }
 
         public void FindAllPixelsOfFigure(Pixel<COLOUR> p, Figure<COLOUR> fig)
@@ -116,7 +131,7 @@ namespace PatternRecognition
 
                 fig.pixels.AddLast(p);
 
-                lock (this) countOfProcessedPixels++;
+                lock (locker) ++locker.counter;
 
 
 
