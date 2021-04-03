@@ -184,7 +184,7 @@ namespace PatternRecognition
             {
                 Random r = new Random();
 
-                int size = 10 + r.Next(10);
+                int size = 50 + r.Next(50);
 
                 colors = new List<Color>(size);
 

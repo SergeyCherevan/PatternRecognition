@@ -71,9 +71,11 @@ namespace PatternRecognition
                             = new TemplateComputationOfPatternRecognition<Color>(
                                 color => color,
                                 cort => (
-                                            Math.Abs(cort.Item1.R - cort.Item2.R) > 30 ||
-                                            Math.Abs(cort.Item1.G - cort.Item2.G) > 30 ||
-                                            Math.Abs(cort.Item1.B - cort.Item2.B) > 30
+                                            Math.Sqrt(
+                                                        Math.Pow(cort.Item1.R - cort.Item2.R, 2) +
+                                                        Math.Pow(cort.Item1.G - cort.Item2.G, 2) +
+                                                        Math.Pow(cort.Item1.B - cort.Item2.B, 2)
+                                                     ) > 50
                                         )
                             );
                     }

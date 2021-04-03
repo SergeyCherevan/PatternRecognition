@@ -19,7 +19,7 @@ namespace PatternRecognition
             InitializeComponent();
         }
 
-        private void openMenuItem_Click(object sender, EventArgs e)
+        private void openFileMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog();
 
@@ -36,7 +36,7 @@ namespace PatternRecognition
 
         public ManagerOfPatternRecognComputation Mprc { get; private set; }
 
-        private void findFiguresOnImageMenuItem_Click(VariantOfPatternRecognition variant, string titleMessage)
+        private void findFiguresOnImage_Click(VariantOfPatternRecognition variant, string titleMessage)
         {
             if (pictureBox1.Image == null)
             {
@@ -79,19 +79,19 @@ namespace PatternRecognition
             });
         }
 
-        private void findFiguresOnBicolorImageMenuItem_Click(object sender, EventArgs e)
+        private void findFiguresOnBicolorImageButton_Click(object sender, EventArgs e)
         {
-            findFiguresOnImageMenuItem_Click(VariantOfPatternRecognition.White_Black, "Двухцветное изображение");
+            findFiguresOnImage_Click(VariantOfPatternRecognition.White_Black, "Двухцветное изображение");
         }
 
-        private void findFiguresOnMultycolorImageMenuItem_Click(object sender, EventArgs e)
+        private void findFiguresOnMultycolorImageButton_Click(object sender, EventArgs e)
         {
-            findFiguresOnImageMenuItem_Click(VariantOfPatternRecognition.Multycolor, "Многоцветное изображение");
+            findFiguresOnImage_Click(VariantOfPatternRecognition.Multycolor, "Многоцветное изображение");
         }
 
-        private void findFiguresOnMultycolorImageWithSmoothBorderMenuItem_Click(object sender, EventArgs e)
+        private void findFiguresOnMultycolorImageWithSmoothBorderButton_Click(object sender, EventArgs e)
         {
-            findFiguresOnImageMenuItem_Click(VariantOfPatternRecognition.MultycolorWithSmoothBorder, "Многоцветное изображение с плавными границами");
+            findFiguresOnImage_Click(VariantOfPatternRecognition.MultycolorWithSmoothBorder, "Многоцветное изображение с плавными границами");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -115,6 +115,62 @@ namespace PatternRecognition
 
             if (progressBar1.Value == progressBar1.Maximum)
                 timer1.Stop();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TrackBar myTB;
+            myTB = (System.Windows.Forms.TrackBar)sender;
+            label3.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TrackBar myTB;
+            myTB = (System.Windows.Forms.TrackBar)sender;
+            label5.Text = "Пороговое значение канала R: " + myTB.Value.ToString();
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TrackBar myTB;
+            myTB = (System.Windows.Forms.TrackBar)sender;
+            label6.Text = "Пороговое значение канала G: " + myTB.Value.ToString();
+        }
+
+        private void trackBar4_Scroll(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TrackBar myTB;
+            myTB = (System.Windows.Forms.TrackBar)sender;
+            label7.Text = "Пороговое значение канала B: " + myTB.Value.ToString();
+        }
+
+        private void trackBar5_Scroll(object sender, EventArgs e)
+        {
+            System.Windows.Forms.TrackBar myTB;
+            myTB = (System.Windows.Forms.TrackBar)sender;
+            label8.Text = "Минимальное количество каналлов с превышением: " + myTB.Value.ToString();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            trackBar1.Enabled ^= true;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            trackBar2.Enabled ^= true;
+            trackBar3.Enabled ^= true;
+            trackBar4.Enabled ^= true;
+            trackBar5.Enabled ^= true;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            trackBar6.Enabled ^= true;
+            trackBar7.Enabled ^= true;
+            trackBar8.Enabled ^= true;
+            trackBar9.Enabled ^= true;
         }
     }
 }
