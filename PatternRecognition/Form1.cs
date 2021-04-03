@@ -117,60 +117,131 @@ namespace PatternRecognition
                 timer1.Stop();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void checkBoxBicolor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxBicolor.Checked)
+            {
+                checkBoxSharpBorders.Checked = false;
+                checkBoxSmoothBorders.Checked = false;
+            }
+        }
+
+        private void checkBoxSharpBorders_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSharpBorders.Checked)
+            {
+                checkBoxBicolor.Checked = false;
+                checkBoxSmoothBorders.Checked = false;
+            }
+        }
+
+        private void checkBoxSmoothBorders_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSmoothBorders.Checked)
+            {
+                checkBoxBicolor.Checked = false;
+                checkBoxSharpBorders.Checked = false;
+            }
+            else
+            {
+                checkBoxRgbPythagoras.Checked = false;
+                checkBoxRgbChannels.Checked = false;
+                checkBoxHsv.Checked = false;
+            }
+
+            labelRgbTitle.Enabled ^= true;
+            labelRgbChannelTitle.Enabled ^= true;
+            labelHsvTitle.Enabled ^= true;
+
+            checkBoxRgbPythagoras.Enabled ^= true;
+            checkBoxRgbChannels.Enabled ^= true;
+            checkBoxHsv.Enabled ^= true;
+        }
+
+        private void checkBoxRgbPythagoras_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRgbPythagoras.Checked)
+            {
+                checkBoxRgbChannels.Checked = false;
+                checkBoxHsv.Checked = false;
+            }
+
+            labelRgbTrack.Enabled ^= true;
+
+            trackBarMaxLen.Enabled ^= true;
+        }
+
+        private void checkBoxRgbChannels_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxRgbChannels.Checked)
+            {
+                checkBoxRgbPythagoras.Checked = false;
+                checkBoxHsv.Checked = false;
+            }
+
+            labelR.Enabled ^= true;
+            labelG.Enabled ^= true;
+            labelB.Enabled ^= true;
+            labelRgbChannelTrack.Enabled ^= true;
+
+            trackBarRgbChannels.Enabled ^= true;
+            trackBarR.Enabled ^= true;
+            trackBarG.Enabled ^= true;
+            trackBarB.Enabled ^= true;
+        }
+
+        private void checkBoxHsv_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxHsv.Checked)
+            {
+                checkBoxRgbPythagoras.Checked = false;
+                checkBoxRgbChannels.Checked = false;
+            }
+
+            labelH.Enabled ^= true;
+            labelS.Enabled ^= true;
+            labelV.Enabled ^= true;
+            labelHsvTrack.Enabled ^= true;
+
+            trackBarH.Enabled ^= true;
+            trackBarS.Enabled ^= true;
+            trackBarV.Enabled ^= true;
+            trackBarHsvChannels.Enabled ^= true;
+        }
+
+        private void trackBarMaxLen_Scroll(object sender, EventArgs e)
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            label3.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
+            labelRgbTrack.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
         }
 
-        private void trackBar2_Scroll(object sender, EventArgs e)
+        private void trackBarR_Scroll(object sender, EventArgs e)
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            label5.Text = "Пороговое значение канала R: " + myTB.Value.ToString();
+            labelR.Text = "Пороговое значение канала R: " + myTB.Value.ToString();
         }
 
-        private void trackBar3_Scroll(object sender, EventArgs e)
+        private void trackBarG_Scroll(object sender, EventArgs e)
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            label6.Text = "Пороговое значение канала G: " + myTB.Value.ToString();
+            labelG.Text = "Пороговое значение канала G: " + myTB.Value.ToString();
         }
 
-        private void trackBar4_Scroll(object sender, EventArgs e)
+        private void trackBarB_Scroll(object sender, EventArgs e)
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            label7.Text = "Пороговое значение канала B: " + myTB.Value.ToString();
+            labelB.Text = "Пороговое значение канала B: " + myTB.Value.ToString();
         }
 
-        private void trackBar5_Scroll(object sender, EventArgs e)
+        private void trackBarRgbChannels_Scroll(object sender, EventArgs e)
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            label8.Text = "Минимальное количество каналлов с превышением: " + myTB.Value.ToString();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            trackBar1.Enabled ^= true;
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            trackBar2.Enabled ^= true;
-            trackBar3.Enabled ^= true;
-            trackBar4.Enabled ^= true;
-            trackBar5.Enabled ^= true;
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            trackBar6.Enabled ^= true;
-            trackBar7.Enabled ^= true;
-            trackBar8.Enabled ^= true;
-            trackBar9.Enabled ^= true;
+            labelRgbChannelTrack.Text = "Минимальное количество каналлов с превышением: " + myTB.Value.ToString();
         }
     }
 }

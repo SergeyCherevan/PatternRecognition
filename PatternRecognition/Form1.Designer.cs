@@ -38,45 +38,49 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.findFiguresOnBicolorImageButton = new System.Windows.Forms.Button();
-            this.findFiguresOnMultycolorImageButton = new System.Windows.Forms.Button();
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.trackBar4 = new System.Windows.Forms.TrackBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.trackBar5 = new System.Windows.Forms.TrackBar();
-            this.label8 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.trackBar6 = new System.Windows.Forms.TrackBar();
-            this.trackBar7 = new System.Windows.Forms.TrackBar();
-            this.label10 = new System.Windows.Forms.Label();
-            this.trackBar8 = new System.Windows.Forms.TrackBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.trackBar9 = new System.Windows.Forms.TrackBar();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelRgbTitle = new System.Windows.Forms.Label();
+            this.labelRgbTrack = new System.Windows.Forms.Label();
+            this.trackBarMaxLen = new System.Windows.Forms.TrackBar();
+            this.labelRgbChannelTitle = new System.Windows.Forms.Label();
+            this.labelR = new System.Windows.Forms.Label();
+            this.trackBarR = new System.Windows.Forms.TrackBar();
+            this.trackBarG = new System.Windows.Forms.TrackBar();
+            this.labelG = new System.Windows.Forms.Label();
+            this.trackBarB = new System.Windows.Forms.TrackBar();
+            this.labelB = new System.Windows.Forms.Label();
+            this.trackBarRgbChannels = new System.Windows.Forms.TrackBar();
+            this.labelRgbChannelTrack = new System.Windows.Forms.Label();
+            this.checkBoxRgbPythagoras = new System.Windows.Forms.CheckBox();
+            this.checkBoxRgbChannels = new System.Windows.Forms.CheckBox();
+            this.checkBoxHsv = new System.Windows.Forms.CheckBox();
+            this.labelHsvTrack = new System.Windows.Forms.Label();
+            this.trackBarHsvChannels = new System.Windows.Forms.TrackBar();
+            this.trackBarV = new System.Windows.Forms.TrackBar();
+            this.labelV = new System.Windows.Forms.Label();
+            this.trackBarS = new System.Windows.Forms.TrackBar();
+            this.labelS = new System.Windows.Forms.Label();
+            this.trackBarH = new System.Windows.Forms.TrackBar();
+            this.labelH = new System.Windows.Forms.Label();
+            this.labelHsvTitle = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBoxSmoothBorders = new System.Windows.Forms.CheckBox();
+            this.checkBoxSharpBorders = new System.Windows.Forms.CheckBox();
+            this.checkBoxBicolor = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxLen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarG)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRgbChannels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarHsvChannels)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarH)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -87,14 +91,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1840, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1840, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
             this.openFileMenuItem.Text = "Открыть";
             this.openFileMenuItem.Click += new System.EventHandler(this.openFileMenuItem_Click);
             // 
@@ -156,305 +160,360 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.label1.Visible = false;
             // 
-            // findFiguresOnBicolorImageButton
+            // labelRgbTitle
             // 
-            this.findFiguresOnBicolorImageButton.Location = new System.Drawing.Point(1255, 80);
-            this.findFiguresOnBicolorImageButton.Name = "findFiguresOnBicolorImageButton";
-            this.findFiguresOnBicolorImageButton.Size = new System.Drawing.Size(225, 47);
-            this.findFiguresOnBicolorImageButton.TabIndex = 8;
-            this.findFiguresOnBicolorImageButton.Text = "Найти фигуры на двухцветном изображении";
-            this.findFiguresOnBicolorImageButton.UseVisualStyleBackColor = true;
-            this.findFiguresOnBicolorImageButton.Click += new System.EventHandler(this.findFiguresOnBicolorImageButton_Click);
+            this.labelRgbTitle.AutoSize = true;
+            this.labelRgbTitle.Enabled = false;
+            this.labelRgbTitle.Location = new System.Drawing.Point(1255, 229);
+            this.labelRgbTitle.Name = "labelRgbTitle";
+            this.labelRgbTitle.Size = new System.Drawing.Size(497, 17);
+            this.labelRgbTitle.TabIndex = 11;
+            this.labelRgbTitle.Text = "Определение схожести цветов по расстоянию между координатами RGB:";
             // 
-            // findFiguresOnMultycolorImageButton
+            // labelRgbTrack
             // 
-            this.findFiguresOnMultycolorImageButton.Location = new System.Drawing.Point(1255, 133);
-            this.findFiguresOnMultycolorImageButton.Name = "findFiguresOnMultycolorImageButton";
-            this.findFiguresOnMultycolorImageButton.Size = new System.Drawing.Size(225, 60);
-            this.findFiguresOnMultycolorImageButton.TabIndex = 9;
-            this.findFiguresOnMultycolorImageButton.Text = "Найти фигуры на изображении RGB с резкими границами";
-            this.findFiguresOnMultycolorImageButton.UseVisualStyleBackColor = true;
-            this.findFiguresOnMultycolorImageButton.Click += new System.EventHandler(this.findFiguresOnMultycolorImageButton_Click);
+            this.labelRgbTrack.AutoSize = true;
+            this.labelRgbTrack.Enabled = false;
+            this.labelRgbTrack.Location = new System.Drawing.Point(1255, 259);
+            this.labelRgbTrack.Name = "labelRgbTrack";
+            this.labelRgbTrack.Size = new System.Drawing.Size(242, 17);
+            this.labelRgbTrack.TabIndex = 12;
+            this.labelRgbTrack.Text = "Пороговое значение расстояния: 0";
             // 
-            // findFiguresOnMultycolorImageWithSmoothBorderButton
+            // trackBarMaxLen
             // 
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.Location = new System.Drawing.Point(1255, 203);
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.Name = "findFiguresOnMultycolorImageWithSmoothBorderButton";
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.Size = new System.Drawing.Size(225, 60);
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.TabIndex = 10;
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.Text = "Найти фигуры на изображении RGB с плавными границами";
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.UseVisualStyleBackColor = true;
-            this.findFiguresOnMultycolorImageWithSmoothBorderButton.Click += new System.EventHandler(this.findFiguresOnMultycolorImageWithSmoothBorderButton_Click);
+            this.trackBarMaxLen.Enabled = false;
+            this.trackBarMaxLen.LargeChange = 1;
+            this.trackBarMaxLen.Location = new System.Drawing.Point(1503, 251);
+            this.trackBarMaxLen.Maximum = 441;
+            this.trackBarMaxLen.Name = "trackBarMaxLen";
+            this.trackBarMaxLen.Size = new System.Drawing.Size(309, 56);
+            this.trackBarMaxLen.TabIndex = 13;
+            this.trackBarMaxLen.Scroll += new System.EventHandler(this.checkBoxRgbPythagoras_CheckedChanged);
             // 
-            // label2
+            // labelRgbChannelTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1255, 279);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(497, 17);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Определение схожести цветов по расстоянию между координатами RGB:";
+            this.labelRgbChannelTitle.AutoSize = true;
+            this.labelRgbChannelTitle.Enabled = false;
+            this.labelRgbChannelTitle.Location = new System.Drawing.Point(1255, 310);
+            this.labelRgbChannelTitle.Name = "labelRgbChannelTitle";
+            this.labelRgbChannelTitle.Size = new System.Drawing.Size(461, 17);
+            this.labelRgbChannelTitle.TabIndex = 14;
+            this.labelRgbChannelTitle.Text = "Определение схожести цветов по разнице отдельных каналов RGB:";
             // 
-            // label3
+            // labelR
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1255, 308);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(242, 17);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Пороговое значение расстояния: 0";
+            this.labelR.AutoSize = true;
+            this.labelR.Enabled = false;
+            this.labelR.Location = new System.Drawing.Point(1255, 346);
+            this.labelR.Name = "labelR";
+            this.labelR.Size = new System.Drawing.Size(226, 17);
+            this.labelR.TabIndex = 15;
+            this.labelR.Text = "Пороговое значение канала R: 0";
             // 
-            // trackBar1
+            // trackBarR
             // 
-            this.trackBar1.Enabled = false;
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(1503, 300);
-            this.trackBar1.Maximum = 441;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(309, 56);
-            this.trackBar1.TabIndex = 13;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBarR.Enabled = false;
+            this.trackBarR.LargeChange = 1;
+            this.trackBarR.Location = new System.Drawing.Point(1503, 342);
+            this.trackBarR.Maximum = 254;
+            this.trackBarR.Name = "trackBarR";
+            this.trackBarR.Size = new System.Drawing.Size(309, 56);
+            this.trackBarR.TabIndex = 16;
+            this.trackBarR.Scroll += new System.EventHandler(this.trackBarR_Scroll);
             // 
-            // label4
+            // trackBarG
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1255, 359);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(461, 17);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Определение схожести цветов по разнице отдельных каналов RGB:";
+            this.trackBarG.Enabled = false;
+            this.trackBarG.LargeChange = 1;
+            this.trackBarG.Location = new System.Drawing.Point(1503, 377);
+            this.trackBarG.Maximum = 254;
+            this.trackBarG.Name = "trackBarG";
+            this.trackBarG.Size = new System.Drawing.Size(309, 56);
+            this.trackBarG.TabIndex = 18;
+            this.trackBarG.Scroll += new System.EventHandler(this.trackBarG_Scroll);
             // 
-            // label5
+            // labelG
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1255, 395);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(226, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Пороговое значение канала R: 0";
+            this.labelG.AutoSize = true;
+            this.labelG.Enabled = false;
+            this.labelG.Location = new System.Drawing.Point(1255, 381);
+            this.labelG.Name = "labelG";
+            this.labelG.Size = new System.Drawing.Size(227, 17);
+            this.labelG.TabIndex = 17;
+            this.labelG.Text = "Пороговое значение канала G: 0";
             // 
-            // trackBar2
+            // trackBarB
             // 
-            this.trackBar2.Enabled = false;
-            this.trackBar2.LargeChange = 1;
-            this.trackBar2.Location = new System.Drawing.Point(1503, 391);
-            this.trackBar2.Maximum = 254;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(309, 56);
-            this.trackBar2.TabIndex = 16;
-            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            this.trackBarB.Enabled = false;
+            this.trackBarB.LargeChange = 1;
+            this.trackBarB.Location = new System.Drawing.Point(1503, 412);
+            this.trackBarB.Maximum = 254;
+            this.trackBarB.Name = "trackBarB";
+            this.trackBarB.Size = new System.Drawing.Size(309, 56);
+            this.trackBarB.TabIndex = 20;
+            this.trackBarB.Scroll += new System.EventHandler(this.trackBarB_Scroll);
             // 
-            // trackBar3
+            // labelB
             // 
-            this.trackBar3.Enabled = false;
-            this.trackBar3.LargeChange = 1;
-            this.trackBar3.Location = new System.Drawing.Point(1503, 426);
-            this.trackBar3.Maximum = 254;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(309, 56);
-            this.trackBar3.TabIndex = 18;
-            this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
+            this.labelB.AutoSize = true;
+            this.labelB.Enabled = false;
+            this.labelB.Location = new System.Drawing.Point(1255, 415);
+            this.labelB.Name = "labelB";
+            this.labelB.Size = new System.Drawing.Size(225, 17);
+            this.labelB.TabIndex = 19;
+            this.labelB.Text = "Пороговое значение канала B: 0";
             // 
-            // label6
+            // trackBarRgbChannels
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1255, 430);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(227, 17);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Пороговое значение канала G: 0";
+            this.trackBarRgbChannels.Enabled = false;
+            this.trackBarRgbChannels.LargeChange = 1;
+            this.trackBarRgbChannels.Location = new System.Drawing.Point(1708, 451);
+            this.trackBarRgbChannels.Maximum = 3;
+            this.trackBarRgbChannels.Minimum = 1;
+            this.trackBarRgbChannels.Name = "trackBarRgbChannels";
+            this.trackBarRgbChannels.Size = new System.Drawing.Size(104, 56);
+            this.trackBarRgbChannels.TabIndex = 21;
+            this.trackBarRgbChannels.Value = 1;
+            this.trackBarRgbChannels.Scroll += new System.EventHandler(this.trackBarRgbChannels_Scroll);
             // 
-            // trackBar4
+            // labelRgbChannelTrack
             // 
-            this.trackBar4.Enabled = false;
-            this.trackBar4.LargeChange = 1;
-            this.trackBar4.Location = new System.Drawing.Point(1503, 461);
-            this.trackBar4.Maximum = 254;
-            this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(309, 56);
-            this.trackBar4.TabIndex = 20;
-            this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
+            this.labelRgbChannelTrack.AutoSize = true;
+            this.labelRgbChannelTrack.Enabled = false;
+            this.labelRgbChannelTrack.Location = new System.Drawing.Point(1255, 451);
+            this.labelRgbChannelTrack.Name = "labelRgbChannelTrack";
+            this.labelRgbChannelTrack.Size = new System.Drawing.Size(369, 17);
+            this.labelRgbChannelTrack.TabIndex = 22;
+            this.labelRgbChannelTrack.Text = "Минимальное количество каналлов с превышением: 1";
             // 
-            // label7
+            // checkBoxRgbPythagoras
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1255, 464);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(225, 17);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "Пороговое значение канала B: 0";
+            this.checkBoxRgbPythagoras.AutoSize = true;
+            this.checkBoxRgbPythagoras.Enabled = false;
+            this.checkBoxRgbPythagoras.Location = new System.Drawing.Point(1768, 229);
+            this.checkBoxRgbPythagoras.Name = "checkBoxRgbPythagoras";
+            this.checkBoxRgbPythagoras.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxRgbPythagoras.TabIndex = 23;
+            this.checkBoxRgbPythagoras.UseVisualStyleBackColor = true;
+            this.checkBoxRgbPythagoras.CheckedChanged += new System.EventHandler(this.checkBoxRgbPythagoras_CheckedChanged);
             // 
-            // trackBar5
+            // checkBoxRgbChannels
             // 
-            this.trackBar5.Enabled = false;
-            this.trackBar5.LargeChange = 1;
-            this.trackBar5.Location = new System.Drawing.Point(1708, 500);
-            this.trackBar5.Maximum = 3;
-            this.trackBar5.Minimum = 1;
-            this.trackBar5.Name = "trackBar5";
-            this.trackBar5.Size = new System.Drawing.Size(104, 56);
-            this.trackBar5.TabIndex = 21;
-            this.trackBar5.Value = 1;
-            this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
+            this.checkBoxRgbChannels.AutoSize = true;
+            this.checkBoxRgbChannels.Enabled = false;
+            this.checkBoxRgbChannels.Location = new System.Drawing.Point(1768, 310);
+            this.checkBoxRgbChannels.Name = "checkBoxRgbChannels";
+            this.checkBoxRgbChannels.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxRgbChannels.TabIndex = 24;
+            this.checkBoxRgbChannels.UseVisualStyleBackColor = true;
+            this.checkBoxRgbChannels.CheckedChanged += new System.EventHandler(this.checkBoxRgbChannels_CheckedChanged);
             // 
-            // label8
+            // checkBoxHsv
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1255, 500);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(369, 17);
-            this.label8.TabIndex = 22;
-            this.label8.Text = "Минимальное количество каналлов с превышением: 1";
+            this.checkBoxHsv.AutoSize = true;
+            this.checkBoxHsv.Enabled = false;
+            this.checkBoxHsv.Location = new System.Drawing.Point(1768, 500);
+            this.checkBoxHsv.Name = "checkBoxHsv";
+            this.checkBoxHsv.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxHsv.TabIndex = 34;
+            this.checkBoxHsv.UseVisualStyleBackColor = true;
+            this.checkBoxHsv.CheckedChanged += new System.EventHandler(this.checkBoxHsv_CheckedChanged);
             // 
-            // checkBox1
+            // labelHsvTrack
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1794, 279);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 23;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.labelHsvTrack.AutoSize = true;
+            this.labelHsvTrack.Enabled = false;
+            this.labelHsvTrack.Location = new System.Drawing.Point(1255, 641);
+            this.labelHsvTrack.Name = "labelHsvTrack";
+            this.labelHsvTrack.Size = new System.Drawing.Size(369, 17);
+            this.labelHsvTrack.TabIndex = 33;
+            this.labelHsvTrack.Text = "Минимальное количество каналлов с превышением: 1";
             // 
-            // checkBox2
+            // trackBarHsvChannels
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(1794, 359);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(18, 17);
-            this.checkBox2.TabIndex = 24;
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.trackBarHsvChannels.Enabled = false;
+            this.trackBarHsvChannels.LargeChange = 1;
+            this.trackBarHsvChannels.Location = new System.Drawing.Point(1708, 641);
+            this.trackBarHsvChannels.Maximum = 3;
+            this.trackBarHsvChannels.Minimum = 1;
+            this.trackBarHsvChannels.Name = "trackBarHsvChannels";
+            this.trackBarHsvChannels.Size = new System.Drawing.Size(104, 56);
+            this.trackBarHsvChannels.TabIndex = 32;
+            this.trackBarHsvChannels.Value = 1;
             // 
-            // checkBox3
+            // trackBarV
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(1794, 549);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(18, 17);
-            this.checkBox3.TabIndex = 34;
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.trackBarV.Enabled = false;
+            this.trackBarV.LargeChange = 1;
+            this.trackBarV.Location = new System.Drawing.Point(1503, 602);
+            this.trackBarV.Maximum = 254;
+            this.trackBarV.Name = "trackBarV";
+            this.trackBarV.Size = new System.Drawing.Size(309, 56);
+            this.trackBarV.TabIndex = 31;
             // 
-            // label9
+            // labelV
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1255, 690);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(369, 17);
-            this.label9.TabIndex = 33;
-            this.label9.Text = "Минимальное количество каналлов с превышением: 1";
+            this.labelV.AutoSize = true;
+            this.labelV.Enabled = false;
+            this.labelV.Location = new System.Drawing.Point(1255, 605);
+            this.labelV.Name = "labelV";
+            this.labelV.Size = new System.Drawing.Size(225, 17);
+            this.labelV.TabIndex = 30;
+            this.labelV.Text = "Пороговое значение канала V: 0";
             // 
-            // trackBar6
+            // trackBarS
             // 
-            this.trackBar6.Enabled = false;
-            this.trackBar6.LargeChange = 1;
-            this.trackBar6.Location = new System.Drawing.Point(1708, 690);
-            this.trackBar6.Maximum = 3;
-            this.trackBar6.Minimum = 1;
-            this.trackBar6.Name = "trackBar6";
-            this.trackBar6.Size = new System.Drawing.Size(104, 56);
-            this.trackBar6.TabIndex = 32;
-            this.trackBar6.Value = 1;
+            this.trackBarS.Enabled = false;
+            this.trackBarS.LargeChange = 1;
+            this.trackBarS.Location = new System.Drawing.Point(1503, 567);
+            this.trackBarS.Maximum = 254;
+            this.trackBarS.Name = "trackBarS";
+            this.trackBarS.Size = new System.Drawing.Size(309, 56);
+            this.trackBarS.TabIndex = 29;
             // 
-            // trackBar7
+            // labelS
             // 
-            this.trackBar7.Enabled = false;
-            this.trackBar7.LargeChange = 1;
-            this.trackBar7.Location = new System.Drawing.Point(1503, 651);
-            this.trackBar7.Maximum = 254;
-            this.trackBar7.Name = "trackBar7";
-            this.trackBar7.Size = new System.Drawing.Size(309, 56);
-            this.trackBar7.TabIndex = 31;
+            this.labelS.AutoSize = true;
+            this.labelS.Enabled = false;
+            this.labelS.Location = new System.Drawing.Point(1255, 571);
+            this.labelS.Name = "labelS";
+            this.labelS.Size = new System.Drawing.Size(225, 17);
+            this.labelS.TabIndex = 28;
+            this.labelS.Text = "Пороговое значение канала S: 0";
             // 
-            // label10
+            // trackBarH
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1255, 654);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(225, 17);
-            this.label10.TabIndex = 30;
-            this.label10.Text = "Пороговое значение канала V: 0";
+            this.trackBarH.Enabled = false;
+            this.trackBarH.LargeChange = 1;
+            this.trackBarH.Location = new System.Drawing.Point(1503, 532);
+            this.trackBarH.Maximum = 254;
+            this.trackBarH.Name = "trackBarH";
+            this.trackBarH.Size = new System.Drawing.Size(309, 56);
+            this.trackBarH.TabIndex = 27;
             // 
-            // trackBar8
+            // labelH
             // 
-            this.trackBar8.Enabled = false;
-            this.trackBar8.LargeChange = 1;
-            this.trackBar8.Location = new System.Drawing.Point(1503, 616);
-            this.trackBar8.Maximum = 254;
-            this.trackBar8.Name = "trackBar8";
-            this.trackBar8.Size = new System.Drawing.Size(309, 56);
-            this.trackBar8.TabIndex = 29;
+            this.labelH.AutoSize = true;
+            this.labelH.Enabled = false;
+            this.labelH.Location = new System.Drawing.Point(1255, 536);
+            this.labelH.Name = "labelH";
+            this.labelH.Size = new System.Drawing.Size(226, 17);
+            this.labelH.TabIndex = 26;
+            this.labelH.Text = "Пороговое значение канала H: 0";
             // 
-            // label11
+            // labelHsvTitle
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1255, 620);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(225, 17);
-            this.label11.TabIndex = 28;
-            this.label11.Text = "Пороговое значение канала S: 0";
+            this.labelHsvTitle.AutoSize = true;
+            this.labelHsvTitle.Enabled = false;
+            this.labelHsvTitle.Location = new System.Drawing.Point(1255, 500);
+            this.labelHsvTitle.Name = "labelHsvTitle";
+            this.labelHsvTitle.Size = new System.Drawing.Size(459, 17);
+            this.labelHsvTitle.TabIndex = 25;
+            this.labelHsvTitle.Text = "Определение схожести цветов по разнице отдельных каналов HSV:";
             // 
-            // trackBar9
+            // button1
             // 
-            this.trackBar9.Enabled = false;
-            this.trackBar9.LargeChange = 1;
-            this.trackBar9.Location = new System.Drawing.Point(1503, 581);
-            this.trackBar9.Maximum = 254;
-            this.trackBar9.Name = "trackBar9";
-            this.trackBar9.Size = new System.Drawing.Size(309, 56);
-            this.trackBar9.TabIndex = 27;
+            this.button1.Location = new System.Drawing.Point(1258, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 32);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Найти фигуры";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // label14
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1255, 585);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(226, 17);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Пороговое значение канала H: 0";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1255, 124);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(185, 17);
+            this.label14.TabIndex = 36;
+            this.label14.Text = "Двухцветное изображение";
             // 
-            // label13
+            // label15
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1255, 549);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(459, 17);
-            this.label13.TabIndex = 25;
-            this.label13.Text = "Определение схожести цветов по разнице отдельных каналов HSV:";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1255, 155);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(276, 17);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "Изображение RGB с резкими границами";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(1255, 186);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(287, 17);
+            this.label16.TabIndex = 38;
+            this.label16.Text = "Изображение RGB с плавными границами";
+            // 
+            // checkBoxSmoothBorders
+            // 
+            this.checkBoxSmoothBorders.AutoSize = true;
+            this.checkBoxSmoothBorders.Location = new System.Drawing.Point(1586, 187);
+            this.checkBoxSmoothBorders.Name = "checkBoxSmoothBorders";
+            this.checkBoxSmoothBorders.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxSmoothBorders.TabIndex = 39;
+            this.checkBoxSmoothBorders.UseVisualStyleBackColor = true;
+            this.checkBoxSmoothBorders.CheckedChanged += new System.EventHandler(this.checkBoxSmoothBorders_CheckedChanged);
+            // 
+            // checkBoxSharpBorders
+            // 
+            this.checkBoxSharpBorders.AutoSize = true;
+            this.checkBoxSharpBorders.Location = new System.Drawing.Point(1586, 155);
+            this.checkBoxSharpBorders.Name = "checkBoxSharpBorders";
+            this.checkBoxSharpBorders.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxSharpBorders.TabIndex = 40;
+            this.checkBoxSharpBorders.UseVisualStyleBackColor = true;
+            this.checkBoxSharpBorders.CheckedChanged += new System.EventHandler(this.checkBoxSharpBorders_CheckedChanged);
+            // 
+            // checkBoxBicolor
+            // 
+            this.checkBoxBicolor.AutoSize = true;
+            this.checkBoxBicolor.Location = new System.Drawing.Point(1586, 124);
+            this.checkBoxBicolor.Name = "checkBoxBicolor";
+            this.checkBoxBicolor.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxBicolor.TabIndex = 41;
+            this.checkBoxBicolor.UseVisualStyleBackColor = true;
+            this.checkBoxBicolor.CheckedChanged += new System.EventHandler(this.checkBoxBicolor_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1840, 755);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.trackBar6);
-            this.Controls.Add(this.trackBar7);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.trackBar8);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.trackBar9);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.trackBar5);
-            this.Controls.Add(this.trackBar4);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.trackBar3);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.findFiguresOnMultycolorImageWithSmoothBorderButton);
-            this.Controls.Add(this.findFiguresOnMultycolorImageButton);
-            this.Controls.Add(this.findFiguresOnBicolorImageButton);
+            this.Controls.Add(this.checkBoxBicolor);
+            this.Controls.Add(this.checkBoxSharpBorders);
+            this.Controls.Add(this.checkBoxSmoothBorders);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.checkBoxHsv);
+            this.Controls.Add(this.labelHsvTrack);
+            this.Controls.Add(this.trackBarHsvChannels);
+            this.Controls.Add(this.trackBarV);
+            this.Controls.Add(this.labelV);
+            this.Controls.Add(this.trackBarS);
+            this.Controls.Add(this.labelS);
+            this.Controls.Add(this.trackBarH);
+            this.Controls.Add(this.labelH);
+            this.Controls.Add(this.labelHsvTitle);
+            this.Controls.Add(this.checkBoxRgbChannels);
+            this.Controls.Add(this.checkBoxRgbPythagoras);
+            this.Controls.Add(this.labelRgbChannelTrack);
+            this.Controls.Add(this.trackBarRgbChannels);
+            this.Controls.Add(this.trackBarB);
+            this.Controls.Add(this.labelB);
+            this.Controls.Add(this.trackBarG);
+            this.Controls.Add(this.labelG);
+            this.Controls.Add(this.trackBarR);
+            this.Controls.Add(this.labelR);
+            this.Controls.Add(this.labelRgbChannelTitle);
+            this.Controls.Add(this.trackBarMaxLen);
+            this.Controls.Add(this.labelRgbTrack);
+            this.Controls.Add(this.labelRgbTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.menuStrip1);
@@ -467,15 +526,15 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarMaxLen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarG)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarRgbChannels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarHsvChannels)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,33 +551,37 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button findFiguresOnBicolorImageButton;
-        private System.Windows.Forms.Button findFiguresOnMultycolorImageButton;
-        private System.Windows.Forms.Button findFiguresOnMultycolorImageWithSmoothBorderButton;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TrackBar trackBar2;
-        private System.Windows.Forms.TrackBar trackBar3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar trackBar4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TrackBar trackBar5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TrackBar trackBar6;
-        private System.Windows.Forms.TrackBar trackBar7;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TrackBar trackBar8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TrackBar trackBar9;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelRgbTitle;
+        private System.Windows.Forms.Label labelRgbTrack;
+        private System.Windows.Forms.TrackBar trackBarMaxLen;
+        private System.Windows.Forms.Label labelRgbChannelTitle;
+        private System.Windows.Forms.Label labelR;
+        private System.Windows.Forms.TrackBar trackBarR;
+        private System.Windows.Forms.TrackBar trackBarG;
+        private System.Windows.Forms.Label labelG;
+        private System.Windows.Forms.TrackBar trackBarB;
+        private System.Windows.Forms.Label labelB;
+        private System.Windows.Forms.TrackBar trackBarRgbChannels;
+        private System.Windows.Forms.Label labelRgbChannelTrack;
+        private System.Windows.Forms.CheckBox checkBoxRgbPythagoras;
+        private System.Windows.Forms.CheckBox checkBoxRgbChannels;
+        private System.Windows.Forms.CheckBox checkBoxHsv;
+        private System.Windows.Forms.Label labelHsvTrack;
+        private System.Windows.Forms.TrackBar trackBarHsvChannels;
+        private System.Windows.Forms.TrackBar trackBarV;
+        private System.Windows.Forms.Label labelV;
+        private System.Windows.Forms.TrackBar trackBarS;
+        private System.Windows.Forms.Label labelS;
+        private System.Windows.Forms.TrackBar trackBarH;
+        private System.Windows.Forms.Label labelH;
+        private System.Windows.Forms.Label labelHsvTitle;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBoxSmoothBorders;
+        private System.Windows.Forms.CheckBox checkBoxSharpBorders;
+        private System.Windows.Forms.CheckBox checkBoxBicolor;
     }
 }
 
