@@ -46,5 +46,16 @@ namespace PatternRecognition.RecognitionOptionsNamespace
             get => _DifBeetwinColours;
             set => _DifBeetwinColours = value;
         }
+
+
+        protected MulticastDelegate _WhichPixelUnionWith;
+        public virtual MulticastDelegate WhichPixelUnionWith
+        {
+            get => _WhichPixelUnionWith;
+            set => _WhichPixelUnionWith = value;
+        }
+
+
+        public virtual bool NoiseSuppression { get; set; }
     }
 }

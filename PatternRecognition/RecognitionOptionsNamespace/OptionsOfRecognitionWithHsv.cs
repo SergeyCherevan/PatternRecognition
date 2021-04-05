@@ -14,9 +14,21 @@ namespace PatternRecognition.RecognitionOptionsNamespace
         public decimal MaxDifV { get; set; }
         public int MinCountOfChannels { get; set; }
 
+
+        public new delegate Pixel<HSV> WhichPixelUnionWithDelegate
+            (Pixel<HSV> p, TemplateComputationOfPatternRecognition<HSV> tcpr);
+
         public OptionsOfRecognitionWithHsv()
         {
             _COLOUR = typeof(HSV);
+
+            _WhichPixelUnionWith = (WhichPixelUnionWithDelegate)((p, tcpr) =>
+            {
+                if (tcpr.IsPixel(p.y, p.x - 1))
+                    return tcpr.pixelsM[p.y, p.x - 1];
+                else
+                    return tcpr.pixelsM[p.y, p.x + 1];
+            });
         }
 
         public override Type COLOUR

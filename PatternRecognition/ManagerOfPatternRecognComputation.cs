@@ -52,6 +52,8 @@ namespace PatternRecognition
 
                 PatternRecognResult.GroupPixelsByFigures();
 
+                PatternRecognResult.ClearFromNoise();
+
                 ImageOut = PatternRecognResult.RecolorImage(NewColorsOfFigures);
             }
             catch (Exception ex)

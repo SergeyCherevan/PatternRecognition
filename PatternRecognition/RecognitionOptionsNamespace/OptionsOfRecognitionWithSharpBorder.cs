@@ -26,5 +26,21 @@ namespace PatternRecognition.RecognitionOptionsNamespace
             get => (Predicate<(Color, Color)>)( cort => cort.Item1 != cort.Item2 );
             set { }
         }
+
+
+
+        public delegate Pixel<Color> WhichPixelUnionWithDelegate
+            (Pixel<Color> p, TemplateComputationOfPatternRecognition<Color> tcpr);
+
+        public OptionsOfRecognitionWithSharpBorder()
+        {
+            _WhichPixelUnionWith = (WhichPixelUnionWithDelegate)( (p, tcpr) =>
+                                                                  {
+                                                                      if (tcpr.IsPixel(p.y, p.x - 1))
+                                                                          return tcpr.pixelsM[p.y, p.x - 1];
+                                                                      else
+                                                                          return tcpr.pixelsM[p.y, p.x + 1];
+                                                                  } );
+        }
     }
 }

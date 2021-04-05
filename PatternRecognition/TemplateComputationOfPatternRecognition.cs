@@ -16,6 +16,13 @@ namespace PatternRecognition
         Func<Color, COLOUR> ColourFunc;
         Predicate<(COLOUR, COLOUR)> DifBeetwinColours;
 
+        delegate Pixel<COLOUR> WhichPixelUnionWithDelegate
+            (Pixel<COLOUR> p, TemplateComputationOfPatternRecognition<COLOUR> tcpr);
+
+        WhichPixelUnionWithDelegate WhichPixelUnionWith;
+
+        bool NoiseSuppression;
+
         public TemplateComputationOfPatternRecognition(RecognitionOptions ro)
         {
             try
@@ -25,8 +32,10 @@ namespace PatternRecognition
             catch (InvalidCastException)
             {
                 throw new ArgumentException
-                    ($"Type of ColourFunc is not {typeof(Func<Color, COLOUR>)}. Type of ColourFunc is {ro.ColourFunc.GetType()}");
+                    ($"Type of ColourFunc is not {typeof(Func<Color, COLOUR>)}." +
+                    $" Type of ColourFunc is {ro.ColourFunc?.GetType()}");
             }
+
 
             try
             {
@@ -36,8 +45,24 @@ namespace PatternRecognition
             {
                 throw new ArgumentException
                     ($"Type of DifBeetwinColours is not {typeof(Func<Color, COLOUR>)}. " +
-                     $"Type of DifBeetwinColours is {ro.DifBeetwinColours.GetType()}");
+                     $"Type of DifBeetwinColours is {ro.DifBeetwinColours?.GetType()}");
             }
+
+
+
+            NoiseSuppression = ro.NoiseSuppression;
+
+            if (NoiseSuppression)
+                try
+                {
+                        WhichPixelUnionWith = (p, tcpr) => (Pixel<COLOUR>)ro.WhichPixelUnionWith.DynamicInvoke(p, tcpr);
+                }
+                catch (InvalidCastException)
+                {
+                    throw new ArgumentException
+                        ($"Type of WhichPixelUnionWith is not {typeof(WhichPixelUnionWithDelegate)}. " +
+                         $"Type of WhichPixelUnionWith is {ro.WhichPixelUnionWith?.GetType()}");
+                }
         }
 
         /*-----------------------------------------------------*/
@@ -199,6 +224,73 @@ namespace PatternRecognition
         {
             return x >= 0 && y >= 0 && x < pixelsM.GetLength(1) && y < pixelsM.GetLength(0);
         }
+
+        /*-----------------------------------------------------*/
+
+        public void ClearFromNoise()
+        {
+            if (!NoiseSuppression)
+                return;
+
+            // int oldCount = locker.counter;
+
+            // locker.counter = locker.counter;
+
+
+            LinkedListNode<Figure<COLOUR>> figureNode, nextFigureNode;
+
+            for (
+                    figureNode = figureList.First;
+                    figureNode != null;
+                    figureNode = nextFigureNode
+                )
+            {
+                Figure<COLOUR> figure = figureNode.Value;
+
+                nextFigureNode = figureNode.Next;
+
+                LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> distributedPixels
+                                                            = MapOfDistributedPixelsOrNull(figure);
+
+                if (distributedPixels != null)
+                {
+                    foreach ( (Pixel<COLOUR> pixel, Figure<COLOUR> newFigure) in distributedPixels )
+                    {
+                        pixel.figure = newFigure;
+                        newFigure.pixels.AddLast(pixel);
+                    }
+
+                    figureList.Remove(figureNode);
+                }
+            }
+
+            // locker.counter = locker.counter;
+        }
+
+        public LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> MapOfDistributedPixelsOrNull(Figure<COLOUR> figure)
+        {
+            LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> resultList = new LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)>();
+
+            int i = 0;
+
+            foreach (Pixel<COLOUR> pixel in figure.pixels)
+            {
+                ++i;
+                if (i > 10)
+                    return null;
+
+                Pixel<COLOUR> neighbourPixel = WhichPixelUnionWith(pixel, this); // correct method, please
+
+                if (neighbourPixel == null)
+                    return null;
+
+                resultList.AddLast((pixel, neighbourPixel.figure));
+            }
+
+            return resultList;
+        }
+
+        /*-----------------------------------------------------*/
 
         public Image RecolorImage(List<Color> colors)
         {

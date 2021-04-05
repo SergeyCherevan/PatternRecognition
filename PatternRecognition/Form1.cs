@@ -108,27 +108,21 @@ namespace PatternRecognition
 
         private RecognitionOptions ConfigureRecognitionOptionsBeforeComputing()
         {
-            RecognitionOptions ro;
+            RecognitionOptions ro = null;
 
             if (checkBoxBicolor.Checked)
             {
                 ro = new OptionsOfBicolorRecognition();
-
-                return ro;
             }
 
             if (checkBoxSharpBorders.Checked)
             {
                 ro = new OptionsOfRecognitionWithSharpBorder();
-
-                return ro;
             }
 
             if (checkBoxRgbCoord.Checked)
             {
                 ro = new OptionsOfRecognitionWithRgbCoord() { MaxLen = trackBarMaxLen.Value };
-
-                return ro;
             }
 
             if (checkBoxRgbChannels.Checked)
@@ -140,8 +134,6 @@ namespace PatternRecognition
 
                     MinCountOfChannels = trackBarRgbChannels.Value,
                 };
-
-                return ro;
             }
 
             if (checkBoxHsv.Checked)
@@ -154,9 +146,14 @@ namespace PatternRecognition
 
                     MinCountOfChannels = trackBarHsvChannels.Value,
                 };
+            }
+
+            if (ro != null)
+            {
+                ro.NoiseSuppression = checkBoxNoiseSuppression.Checked;
 
                 return ro;
-            }
+            } 
 
             MessageBox.Show("Не выбраны параметры распознавания фигур", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

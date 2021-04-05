@@ -69,6 +69,8 @@
             this.checkBoxSmoothBorders = new System.Windows.Forms.CheckBox();
             this.checkBoxSharpBorders = new System.Windows.Forms.CheckBox();
             this.checkBoxBicolor = new System.Windows.Forms.CheckBox();
+            this.checkBoxNoiseSuppression = new System.Windows.Forms.CheckBox();
+            this.labelNoiseSuppression = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,7 +93,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1840, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1836, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -479,11 +481,31 @@
             this.checkBoxBicolor.UseVisualStyleBackColor = true;
             this.checkBoxBicolor.CheckedChanged += new System.EventHandler(this.checkBoxBicolor_CheckedChanged);
             // 
+            // checkBoxNoiseSuppression
+            // 
+            this.checkBoxNoiseSuppression.AutoSize = true;
+            this.checkBoxNoiseSuppression.Location = new System.Drawing.Point(1586, 689);
+            this.checkBoxNoiseSuppression.Name = "checkBoxNoiseSuppression";
+            this.checkBoxNoiseSuppression.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxNoiseSuppression.TabIndex = 43;
+            this.checkBoxNoiseSuppression.UseVisualStyleBackColor = true;
+            // 
+            // labelNoiseSuppression
+            // 
+            this.labelNoiseSuppression.AutoSize = true;
+            this.labelNoiseSuppression.Location = new System.Drawing.Point(1255, 689);
+            this.labelNoiseSuppression.Name = "labelNoiseSuppression";
+            this.labelNoiseSuppression.Size = new System.Drawing.Size(122, 17);
+            this.labelNoiseSuppression.TabIndex = 42;
+            this.labelNoiseSuppression.Text = "Шумоподавление";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1840, 755);
+            this.ClientSize = new System.Drawing.Size(1836, 755);
+            this.Controls.Add(this.checkBoxNoiseSuppression);
+            this.Controls.Add(this.labelNoiseSuppression);
             this.Controls.Add(this.checkBoxBicolor);
             this.Controls.Add(this.checkBoxSharpBorders);
             this.Controls.Add(this.checkBoxSmoothBorders);
@@ -583,6 +605,8 @@
         private System.Windows.Forms.CheckBox checkBoxSmoothBorders;
         private System.Windows.Forms.CheckBox checkBoxSharpBorders;
         private System.Windows.Forms.CheckBox checkBoxBicolor;
+        private System.Windows.Forms.CheckBox checkBoxNoiseSuppression;
+        private System.Windows.Forms.Label labelNoiseSuppression;
     }
 }
 
