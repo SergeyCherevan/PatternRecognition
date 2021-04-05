@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PatternRecognition.RecognitionOptionsNamespace;
 using static PatternRecognition.ManagerOfPatternRecognComputation;
 
 namespace PatternRecognition
@@ -18,6 +19,8 @@ namespace PatternRecognition
         {
             InitializeComponent();
         }
+
+
 
         private void openFileMenuItem_Click(object sender, EventArgs e)
         {
@@ -34,69 +37,170 @@ namespace PatternRecognition
             }
         }
 
+
+
         public ManagerOfPatternRecognComputation Mprc { get; private set; }
 
-        private void findFiguresOnImage_Click(VariantOfPatternRecognition variant, string titleMessage)
+
+
+
+
+
+
+        private void findFigures_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckPicture();
+            }
+            catch (ApplicationException)
+            {
+                return;
+            }
+
+
+            ConfigureInterfaceBeforeThreadedComputing();
+
+
+            RecognitionOptions ro;
+
+            try
+            {
+                ro = ConfigureRecognitionOptionsBeforeComputing();
+            }
+            catch (ApplicationException)
+            {
+                return;
+            }
+
+
+            Task taskOfPatternRecognition = ThreadedCompute(ro);
+
+
+            ShowResult(taskOfPatternRecognition);
+        }
+
+
+
+
+
+
+
+        private void CheckPicture()
         {
             if (pictureBox1.Image == null)
             {
                 MessageBox.Show("Изображение не выбрано", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                return;
+                throw new ApplicationException("Image is not selected");
             }
+        }
 
+        private void ConfigureInterfaceBeforeThreadedComputing()
+        {
             progressBar1.Maximum = pictureBox1.Image.Height
                                         * pictureBox1.Image.Width;
             progressBar1.Value = 0;
             progressBar1.Visible = true;
 
             timer1.Start();
+        }
 
+        private RecognitionOptions ConfigureRecognitionOptionsBeforeComputing()
+        {
+            RecognitionOptions ro;
 
+            if (checkBoxBicolor.Checked)
+            {
+                ro = new OptionsOfBicolorRecognition();
 
+                return ro;
+            }
 
-            Task reactionByClickMenuItem = new Task( () => {
+            if (checkBoxSharpBorders.Checked)
+            {
+                ro = new OptionsOfRecognitionWithSharpBorder();
 
-                Mprc = new ManagerOfPatternRecognComputation { ImageIn = pictureBox1.Image, Variant = variant };
+                return ro;
+            }
+
+            if (checkBoxRgbCoord.Checked)
+            {
+                ro = new OptionsOfRecognitionWithRgbCoord() { MaxLen = trackBarMaxLen.Value };
+
+                return ro;
+            }
+
+            if (checkBoxRgbChannels.Checked)
+            {
+                ro = new OptionsOfRecognitionWithRgbChannels() { 
+                    MaxDifR = trackBarR.Value,
+                    MaxDifG = trackBarG.Value,
+                    MaxDifB = trackBarB.Value,
+
+                    MinCountOfChannels = trackBarRgbChannels.Value,
+                };
+
+                return ro;
+            }
+
+            if (checkBoxHsv.Checked)
+            {
+                ro = new OptionsOfRecognitionWithHsv()
+                {
+                    MaxDifH = (decimal)trackBarH.Value / 100,
+                    MaxDifS = (decimal)trackBarS.Value / 100,
+                    MaxDifV = (decimal)trackBarV.Value / 100,
+
+                    MinCountOfChannels = trackBarHsvChannels.Value,
+                };
+
+                return ro;
+            }
+
+            MessageBox.Show("Не выбраны параметры распознавания фигур", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            throw new ApplicationException("Recognition options are not selected");
+        }
+
+        private Task ThreadedCompute(RecognitionOptions ro)
+        {
+            Task task = new Task(() => {
+
+                Mprc = new ManagerOfPatternRecognComputation { ImageIn = pictureBox1.Image, RO = ro };
 
                 Mprc.Computate();
 
                 pictureBox2.Image = Mprc.ImageOut;
             });
 
-            reactionByClickMenuItem.Start();
+            task.Start();
 
+            return task;
+        }
 
-
-
-            reactionByClickMenuItem.ContinueWith(task => {
+        private void ShowResult(Task task)
+        {
+            task.ContinueWith(t => {
                 progressBar1.Visible = false;
 
                 MessageBox.Show($"Количество фигур на изображении не считая фон: {Mprc.PatternRecognResult.figureList.Count - 1} \n\n" +
                     $"Размеры изображения: {Mprc.ImageOut.Width}x{Mprc.ImageOut.Height} \n\n" +
-                    $"Время работы алгоритма: {Math.Round(Mprc.TimeOfWork.TotalSeconds, 2)} seconds",
-                    titleMessage);
+                    $"Время работы алгоритма: {Math.Round(Mprc.TimeOfWork.TotalSeconds, 2)} секунд",
+                    "Распознавание фигур на изображении");
             });
         }
 
-        private void findFiguresOnBicolorImageButton_Click(object sender, EventArgs e)
-        {
-            findFiguresOnImage_Click(VariantOfPatternRecognition.White_Black, "Двухцветное изображение");
-        }
 
-        private void findFiguresOnMultycolorImageButton_Click(object sender, EventArgs e)
-        {
-            findFiguresOnImage_Click(VariantOfPatternRecognition.Multycolor, "Многоцветное изображение");
-        }
 
-        private void findFiguresOnMultycolorImageWithSmoothBorderButton_Click(object sender, EventArgs e)
-        {
-            findFiguresOnImage_Click(VariantOfPatternRecognition.MultycolorWithSmoothBorder, "Многоцветное изображение с плавными границами");
-        }
+
+
+
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (Mprc.PatternRecognResult.locker != null)
+            if (Mprc?.PatternRecognResult?.locker != null)
                 lock (Mprc.PatternRecognResult.locker)
                 {
                     progressBar1.Value = Mprc.PatternRecognResult.locker.counter;
@@ -144,29 +248,29 @@ namespace PatternRecognition
             }
             else
             {
-                checkBoxRgbPythagoras.Checked = false;
+                checkBoxRgbCoord.Checked = false;
                 checkBoxRgbChannels.Checked = false;
                 checkBoxHsv.Checked = false;
             }
 
-            labelRgbTitle.Enabled ^= true;
+            labelRgbCoordTitle.Enabled ^= true;
             labelRgbChannelTitle.Enabled ^= true;
             labelHsvTitle.Enabled ^= true;
 
-            checkBoxRgbPythagoras.Enabled ^= true;
+            checkBoxRgbCoord.Enabled ^= true;
             checkBoxRgbChannels.Enabled ^= true;
             checkBoxHsv.Enabled ^= true;
         }
 
         private void checkBoxRgbPythagoras_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxRgbPythagoras.Checked)
+            if (checkBoxRgbCoord.Checked)
             {
                 checkBoxRgbChannels.Checked = false;
                 checkBoxHsv.Checked = false;
             }
 
-            labelRgbTrack.Enabled ^= true;
+            labelMaxLenTrack.Enabled ^= true;
 
             trackBarMaxLen.Enabled ^= true;
         }
@@ -175,7 +279,7 @@ namespace PatternRecognition
         {
             if (checkBoxRgbChannels.Checked)
             {
-                checkBoxRgbPythagoras.Checked = false;
+                checkBoxRgbCoord.Checked = false;
                 checkBoxHsv.Checked = false;
             }
 
@@ -194,7 +298,7 @@ namespace PatternRecognition
         {
             if (checkBoxHsv.Checked)
             {
-                checkBoxRgbPythagoras.Checked = false;
+                checkBoxRgbCoord.Checked = false;
                 checkBoxRgbChannels.Checked = false;
             }
 
@@ -213,7 +317,7 @@ namespace PatternRecognition
         {
             System.Windows.Forms.TrackBar myTB;
             myTB = (System.Windows.Forms.TrackBar)sender;
-            labelRgbTrack.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
+            labelMaxLenTrack.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
         }
 
         private void trackBarR_Scroll(object sender, EventArgs e)

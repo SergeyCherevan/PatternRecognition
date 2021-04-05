@@ -7,18 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PatternRecognition.RecognitionOptionsNamespace;
+
 namespace PatternRecognition
 {
     public class ManagerOfPatternRecognComputation
     {
-        public enum VariantOfPatternRecognition
-        {
-            White_Black,
-            Multycolor,
-            MultycolorWithSmoothBorder,
-        }
 
-        public VariantOfPatternRecognition Variant { get; set; } = VariantOfPatternRecognition.White_Black;
+        public RecognitionOptions RO { get; set; } = new OptionsOfBicolorRecognition();
 
         public Image ImageIn { get; set; } = null;
 
@@ -38,64 +34,31 @@ namespace PatternRecognition
         {
             DateTime time = DateTime.Now;
 
-            switch (Variant)
+            try
             {
-                case VariantOfPatternRecognition.White_Black:
-                    {
-                        PatternRecognResult
+                Type typeOfGenericComputationOfPatternRecognition
+                    = typeof(TemplateComputationOfPatternRecognition<>);
 
-                            = new TemplateComputationOfPatternRecognition<bool>(
-                                color => ((color.ToArgb() & 0xFFFFFF) >= 0x888888),
-                                cort => (cort.Item1 != cort.Item2)
-                            );
-                    }
-                    break;
+                Type typeOfConstructedComputationOfPatternRecognition
+                    = typeOfGenericComputationOfPatternRecognition.MakeGenericType(new Type[] { RO.COLOUR });
 
+                PatternRecognResult = typeOfConstructedComputationOfPatternRecognition
+                    .GetConstructor(new Type[] { typeof(RecognitionOptions) })
+                    .Invoke(new object[] { RO });
 
-                case VariantOfPatternRecognition.Multycolor:
-                    {
-                        PatternRecognResult
+                PatternRecognResult.CreatePointsArrFromImage(ImageIn);
 
-                            = new TemplateComputationOfPatternRecognition<Color>(
-                                color => color,
-                                cort => (cort.Item1 != cort.Item2)
-                            );
-                    }
-                    break;
+                PatternRecognResult.CreateFreePixelsAndPixelsM();
 
+                PatternRecognResult.GroupPixelsByFigures();
 
-                case VariantOfPatternRecognition.MultycolorWithSmoothBorder:
-                    {
-                        PatternRecognResult
-
-                            = new TemplateComputationOfPatternRecognition<Color>(
-                                color => color,
-                                cort => (
-                                            Math.Sqrt(
-                                                        Math.Pow(cort.Item1.R - cort.Item2.R, 2) +
-                                                        Math.Pow(cort.Item1.G - cort.Item2.G, 2) +
-                                                        Math.Pow(cort.Item1.B - cort.Item2.B, 2)
-                                                     ) > 50
-                                        )
-                            );
-                    }
-                    break;
-
-                default:
-                    {
-
-                        throw new Exception($"\"Method Computate() can not processed value {Variant} as variant of pattern recognition.");
-                    }
+                ImageOut = PatternRecognResult.RecolorImage(NewColorsOfFigures);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nВ стеке вызовов:\n" + ex.StackTrace, ex.GetType().Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
-            PatternRecognResult.CreatePointsArrFromImage(ImageIn);
-
-            PatternRecognResult.CreateFreePixelsAndPixelsM();
-
-            PatternRecognResult.GroupPixelsByFigures();
-
-            ImageOut = PatternRecognResult.RecolorImage(NewColorsOfFigures);
 
             TimeOfWork = DateTime.Now - time;
 

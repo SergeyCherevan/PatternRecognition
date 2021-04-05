@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PatternRecognition.RecognitionOptionsNamespace;
+
 namespace PatternRecognition
 {
     public class TemplateComputationOfPatternRecognition<COLOUR>
@@ -14,9 +16,29 @@ namespace PatternRecognition
         Func<Color, COLOUR> ColourFunc;
         Predicate<(COLOUR, COLOUR)> DifBeetwinColours;
 
-        public TemplateComputationOfPatternRecognition(
-                    Func<Color, COLOUR> F, Predicate<(COLOUR, COLOUR)> P
-            ) { ColourFunc = F; DifBeetwinColours = P; }
+        public TemplateComputationOfPatternRecognition(RecognitionOptions ro)
+        {
+            try
+            {
+                ColourFunc = (Func<Color, COLOUR>)ro.ColourFunc;
+            }
+            catch (InvalidCastException)
+            {
+                throw new ArgumentException
+                    ($"Type of ColourFunc is not {typeof(Func<Color, COLOUR>)}. Type of ColourFunc is {ro.ColourFunc.GetType()}");
+            }
+
+            try
+            {
+                DifBeetwinColours = (Predicate<(COLOUR, COLOUR)>)ro.DifBeetwinColours;
+            }
+            catch (InvalidCastException)
+            {
+                throw new ArgumentException
+                    ($"Type of DifBeetwinColours is not {typeof(Func<Color, COLOUR>)}. " +
+                     $"Type of DifBeetwinColours is {ro.DifBeetwinColours.GetType()}");
+            }
+        }
 
         /*-----------------------------------------------------*/
 

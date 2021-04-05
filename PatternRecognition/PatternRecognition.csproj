@@ -53,10 +53,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HSV.cs" />
     <Compile Include="ManagerOfPatternRecognComputation.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfRecognitionWithRgbChannels.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfRecognitionWithHsv.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfRecognitionWithRgbCoord.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfRecognitionWithSharpBorder.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfRecognitionWithSmoothBorders.cs" />
+    <Compile Include="RecognitionOptionsNamespace\OptionsOfBicolorRecognition.cs" />
     <Compile Include="Pixel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecognitionOptionsNamespace\RecognitionOptions.cs" />
     <Compile Include="TemplateComputationOfPatternRecognition.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

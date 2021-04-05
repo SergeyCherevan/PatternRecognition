@@ -38,8 +38,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.labelRgbTitle = new System.Windows.Forms.Label();
-            this.labelRgbTrack = new System.Windows.Forms.Label();
+            this.labelRgbCoordTitle = new System.Windows.Forms.Label();
+            this.labelMaxLenTrack = new System.Windows.Forms.Label();
             this.trackBarMaxLen = new System.Windows.Forms.TrackBar();
             this.labelRgbChannelTitle = new System.Windows.Forms.Label();
             this.labelR = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.labelB = new System.Windows.Forms.Label();
             this.trackBarRgbChannels = new System.Windows.Forms.TrackBar();
             this.labelRgbChannelTrack = new System.Windows.Forms.Label();
-            this.checkBoxRgbPythagoras = new System.Windows.Forms.CheckBox();
+            this.checkBoxRgbCoord = new System.Windows.Forms.CheckBox();
             this.checkBoxRgbChannels = new System.Windows.Forms.CheckBox();
             this.checkBoxHsv = new System.Windows.Forms.CheckBox();
             this.labelHsvTrack = new System.Windows.Forms.Label();
@@ -62,10 +62,10 @@
             this.trackBarH = new System.Windows.Forms.TrackBar();
             this.labelH = new System.Windows.Forms.Label();
             this.labelHsvTitle = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.findFigures = new System.Windows.Forms.Button();
+            this.labelBicolor = new System.Windows.Forms.Label();
+            this.labelSharpBorders = new System.Windows.Forms.Label();
+            this.labelSmoothBorders = new System.Windows.Forms.Label();
             this.checkBoxSmoothBorders = new System.Windows.Forms.CheckBox();
             this.checkBoxSharpBorders = new System.Windows.Forms.CheckBox();
             this.checkBoxBicolor = new System.Windows.Forms.CheckBox();
@@ -160,36 +160,36 @@
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.label1.Visible = false;
             // 
-            // labelRgbTitle
+            // labelRgbCoordTitle
             // 
-            this.labelRgbTitle.AutoSize = true;
-            this.labelRgbTitle.Enabled = false;
-            this.labelRgbTitle.Location = new System.Drawing.Point(1255, 229);
-            this.labelRgbTitle.Name = "labelRgbTitle";
-            this.labelRgbTitle.Size = new System.Drawing.Size(497, 17);
-            this.labelRgbTitle.TabIndex = 11;
-            this.labelRgbTitle.Text = "Определение схожести цветов по расстоянию между координатами RGB:";
+            this.labelRgbCoordTitle.AutoSize = true;
+            this.labelRgbCoordTitle.Enabled = false;
+            this.labelRgbCoordTitle.Location = new System.Drawing.Point(1255, 229);
+            this.labelRgbCoordTitle.Name = "labelRgbCoordTitle";
+            this.labelRgbCoordTitle.Size = new System.Drawing.Size(497, 17);
+            this.labelRgbCoordTitle.TabIndex = 11;
+            this.labelRgbCoordTitle.Text = "Определение схожести цветов по расстоянию между координатами RGB:";
             // 
-            // labelRgbTrack
+            // labelMaxLenTrack
             // 
-            this.labelRgbTrack.AutoSize = true;
-            this.labelRgbTrack.Enabled = false;
-            this.labelRgbTrack.Location = new System.Drawing.Point(1255, 259);
-            this.labelRgbTrack.Name = "labelRgbTrack";
-            this.labelRgbTrack.Size = new System.Drawing.Size(242, 17);
-            this.labelRgbTrack.TabIndex = 12;
-            this.labelRgbTrack.Text = "Пороговое значение расстояния: 0";
+            this.labelMaxLenTrack.AutoSize = true;
+            this.labelMaxLenTrack.Enabled = false;
+            this.labelMaxLenTrack.Location = new System.Drawing.Point(1255, 259);
+            this.labelMaxLenTrack.Name = "labelMaxLenTrack";
+            this.labelMaxLenTrack.Size = new System.Drawing.Size(242, 17);
+            this.labelMaxLenTrack.TabIndex = 12;
+            this.labelMaxLenTrack.Text = "Пороговое значение расстояния: 0";
             // 
             // trackBarMaxLen
             // 
             this.trackBarMaxLen.Enabled = false;
             this.trackBarMaxLen.LargeChange = 1;
-            this.trackBarMaxLen.Location = new System.Drawing.Point(1503, 251);
+            this.trackBarMaxLen.Location = new System.Drawing.Point(1514, 251);
             this.trackBarMaxLen.Maximum = 441;
             this.trackBarMaxLen.Name = "trackBarMaxLen";
             this.trackBarMaxLen.Size = new System.Drawing.Size(309, 56);
             this.trackBarMaxLen.TabIndex = 13;
-            this.trackBarMaxLen.Scroll += new System.EventHandler(this.checkBoxRgbPythagoras_CheckedChanged);
+            this.trackBarMaxLen.Scroll += new System.EventHandler(this.trackBarMaxLen_Scroll);
             // 
             // labelRgbChannelTitle
             // 
@@ -215,7 +215,7 @@
             // 
             this.trackBarR.Enabled = false;
             this.trackBarR.LargeChange = 1;
-            this.trackBarR.Location = new System.Drawing.Point(1503, 342);
+            this.trackBarR.Location = new System.Drawing.Point(1514, 342);
             this.trackBarR.Maximum = 254;
             this.trackBarR.Name = "trackBarR";
             this.trackBarR.Size = new System.Drawing.Size(309, 56);
@@ -226,7 +226,7 @@
             // 
             this.trackBarG.Enabled = false;
             this.trackBarG.LargeChange = 1;
-            this.trackBarG.Location = new System.Drawing.Point(1503, 377);
+            this.trackBarG.Location = new System.Drawing.Point(1514, 377);
             this.trackBarG.Maximum = 254;
             this.trackBarG.Name = "trackBarG";
             this.trackBarG.Size = new System.Drawing.Size(309, 56);
@@ -247,7 +247,7 @@
             // 
             this.trackBarB.Enabled = false;
             this.trackBarB.LargeChange = 1;
-            this.trackBarB.Location = new System.Drawing.Point(1503, 412);
+            this.trackBarB.Location = new System.Drawing.Point(1514, 412);
             this.trackBarB.Maximum = 254;
             this.trackBarB.Name = "trackBarB";
             this.trackBarB.Size = new System.Drawing.Size(309, 56);
@@ -268,7 +268,7 @@
             // 
             this.trackBarRgbChannels.Enabled = false;
             this.trackBarRgbChannels.LargeChange = 1;
-            this.trackBarRgbChannels.Location = new System.Drawing.Point(1708, 451);
+            this.trackBarRgbChannels.Location = new System.Drawing.Point(1719, 451);
             this.trackBarRgbChannels.Maximum = 3;
             this.trackBarRgbChannels.Minimum = 1;
             this.trackBarRgbChannels.Name = "trackBarRgbChannels";
@@ -287,16 +287,16 @@
             this.labelRgbChannelTrack.TabIndex = 22;
             this.labelRgbChannelTrack.Text = "Минимальное количество каналлов с превышением: 1";
             // 
-            // checkBoxRgbPythagoras
+            // checkBoxRgbCoord
             // 
-            this.checkBoxRgbPythagoras.AutoSize = true;
-            this.checkBoxRgbPythagoras.Enabled = false;
-            this.checkBoxRgbPythagoras.Location = new System.Drawing.Point(1768, 229);
-            this.checkBoxRgbPythagoras.Name = "checkBoxRgbPythagoras";
-            this.checkBoxRgbPythagoras.Size = new System.Drawing.Size(18, 17);
-            this.checkBoxRgbPythagoras.TabIndex = 23;
-            this.checkBoxRgbPythagoras.UseVisualStyleBackColor = true;
-            this.checkBoxRgbPythagoras.CheckedChanged += new System.EventHandler(this.checkBoxRgbPythagoras_CheckedChanged);
+            this.checkBoxRgbCoord.AutoSize = true;
+            this.checkBoxRgbCoord.Enabled = false;
+            this.checkBoxRgbCoord.Location = new System.Drawing.Point(1768, 229);
+            this.checkBoxRgbCoord.Name = "checkBoxRgbCoord";
+            this.checkBoxRgbCoord.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxRgbCoord.TabIndex = 23;
+            this.checkBoxRgbCoord.UseVisualStyleBackColor = true;
+            this.checkBoxRgbCoord.CheckedChanged += new System.EventHandler(this.checkBoxRgbPythagoras_CheckedChanged);
             // 
             // checkBoxRgbChannels
             // 
@@ -334,7 +334,7 @@
             // 
             this.trackBarHsvChannels.Enabled = false;
             this.trackBarHsvChannels.LargeChange = 1;
-            this.trackBarHsvChannels.Location = new System.Drawing.Point(1708, 641);
+            this.trackBarHsvChannels.Location = new System.Drawing.Point(1719, 641);
             this.trackBarHsvChannels.Maximum = 3;
             this.trackBarHsvChannels.Minimum = 1;
             this.trackBarHsvChannels.Name = "trackBarHsvChannels";
@@ -346,8 +346,8 @@
             // 
             this.trackBarV.Enabled = false;
             this.trackBarV.LargeChange = 1;
-            this.trackBarV.Location = new System.Drawing.Point(1503, 602);
-            this.trackBarV.Maximum = 254;
+            this.trackBarV.Location = new System.Drawing.Point(1514, 602);
+            this.trackBarV.Maximum = 99;
             this.trackBarV.Name = "trackBarV";
             this.trackBarV.Size = new System.Drawing.Size(309, 56);
             this.trackBarV.TabIndex = 31;
@@ -366,8 +366,8 @@
             // 
             this.trackBarS.Enabled = false;
             this.trackBarS.LargeChange = 1;
-            this.trackBarS.Location = new System.Drawing.Point(1503, 567);
-            this.trackBarS.Maximum = 254;
+            this.trackBarS.Location = new System.Drawing.Point(1514, 567);
+            this.trackBarS.Maximum = 99;
             this.trackBarS.Name = "trackBarS";
             this.trackBarS.Size = new System.Drawing.Size(309, 56);
             this.trackBarS.TabIndex = 29;
@@ -386,8 +386,8 @@
             // 
             this.trackBarH.Enabled = false;
             this.trackBarH.LargeChange = 1;
-            this.trackBarH.Location = new System.Drawing.Point(1503, 532);
-            this.trackBarH.Maximum = 254;
+            this.trackBarH.Location = new System.Drawing.Point(1514, 532);
+            this.trackBarH.Maximum = 99;
             this.trackBarH.Name = "trackBarH";
             this.trackBarH.Size = new System.Drawing.Size(309, 56);
             this.trackBarH.TabIndex = 27;
@@ -412,41 +412,42 @@
             this.labelHsvTitle.TabIndex = 25;
             this.labelHsvTitle.Text = "Определение схожести цветов по разнице отдельных каналов HSV:";
             // 
-            // button1
+            // findFigures
             // 
-            this.button1.Location = new System.Drawing.Point(1258, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 32);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Найти фигуры";
-            this.button1.UseVisualStyleBackColor = true;
+            this.findFigures.Location = new System.Drawing.Point(1258, 80);
+            this.findFigures.Name = "findFigures";
+            this.findFigures.Size = new System.Drawing.Size(121, 32);
+            this.findFigures.TabIndex = 35;
+            this.findFigures.Text = "Найти фигуры";
+            this.findFigures.UseVisualStyleBackColor = true;
+            this.findFigures.Click += new System.EventHandler(this.findFigures_Click);
             // 
-            // label14
+            // labelBicolor
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1255, 124);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(185, 17);
-            this.label14.TabIndex = 36;
-            this.label14.Text = "Двухцветное изображение";
+            this.labelBicolor.AutoSize = true;
+            this.labelBicolor.Location = new System.Drawing.Point(1255, 124);
+            this.labelBicolor.Name = "labelBicolor";
+            this.labelBicolor.Size = new System.Drawing.Size(185, 17);
+            this.labelBicolor.TabIndex = 36;
+            this.labelBicolor.Text = "Двухцветное изображение";
             // 
-            // label15
+            // labelSharpBorders
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1255, 155);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(276, 17);
-            this.label15.TabIndex = 37;
-            this.label15.Text = "Изображение RGB с резкими границами";
+            this.labelSharpBorders.AutoSize = true;
+            this.labelSharpBorders.Location = new System.Drawing.Point(1255, 155);
+            this.labelSharpBorders.Name = "labelSharpBorders";
+            this.labelSharpBorders.Size = new System.Drawing.Size(276, 17);
+            this.labelSharpBorders.TabIndex = 37;
+            this.labelSharpBorders.Text = "Изображение RGB с резкими границами";
             // 
-            // label16
+            // labelSmoothBorders
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1255, 186);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(287, 17);
-            this.label16.TabIndex = 38;
-            this.label16.Text = "Изображение RGB с плавными границами";
+            this.labelSmoothBorders.AutoSize = true;
+            this.labelSmoothBorders.Location = new System.Drawing.Point(1255, 186);
+            this.labelSmoothBorders.Name = "labelSmoothBorders";
+            this.labelSmoothBorders.Size = new System.Drawing.Size(287, 17);
+            this.labelSmoothBorders.TabIndex = 38;
+            this.labelSmoothBorders.Text = "Изображение RGB с плавными границами";
             // 
             // checkBoxSmoothBorders
             // 
@@ -486,10 +487,10 @@
             this.Controls.Add(this.checkBoxBicolor);
             this.Controls.Add(this.checkBoxSharpBorders);
             this.Controls.Add(this.checkBoxSmoothBorders);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelSmoothBorders);
+            this.Controls.Add(this.labelSharpBorders);
+            this.Controls.Add(this.labelBicolor);
+            this.Controls.Add(this.findFigures);
             this.Controls.Add(this.checkBoxHsv);
             this.Controls.Add(this.labelHsvTrack);
             this.Controls.Add(this.trackBarHsvChannels);
@@ -501,7 +502,7 @@
             this.Controls.Add(this.labelH);
             this.Controls.Add(this.labelHsvTitle);
             this.Controls.Add(this.checkBoxRgbChannels);
-            this.Controls.Add(this.checkBoxRgbPythagoras);
+            this.Controls.Add(this.checkBoxRgbCoord);
             this.Controls.Add(this.labelRgbChannelTrack);
             this.Controls.Add(this.trackBarRgbChannels);
             this.Controls.Add(this.trackBarB);
@@ -512,8 +513,8 @@
             this.Controls.Add(this.labelR);
             this.Controls.Add(this.labelRgbChannelTitle);
             this.Controls.Add(this.trackBarMaxLen);
-            this.Controls.Add(this.labelRgbTrack);
-            this.Controls.Add(this.labelRgbTitle);
+            this.Controls.Add(this.labelMaxLenTrack);
+            this.Controls.Add(this.labelRgbCoordTitle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.menuStrip1);
@@ -551,8 +552,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelRgbTitle;
-        private System.Windows.Forms.Label labelRgbTrack;
+        private System.Windows.Forms.Label labelRgbCoordTitle;
+        private System.Windows.Forms.Label labelMaxLenTrack;
         private System.Windows.Forms.TrackBar trackBarMaxLen;
         private System.Windows.Forms.Label labelRgbChannelTitle;
         private System.Windows.Forms.Label labelR;
@@ -563,7 +564,7 @@
         private System.Windows.Forms.Label labelB;
         private System.Windows.Forms.TrackBar trackBarRgbChannels;
         private System.Windows.Forms.Label labelRgbChannelTrack;
-        private System.Windows.Forms.CheckBox checkBoxRgbPythagoras;
+        private System.Windows.Forms.CheckBox checkBoxRgbCoord;
         private System.Windows.Forms.CheckBox checkBoxRgbChannels;
         private System.Windows.Forms.CheckBox checkBoxHsv;
         private System.Windows.Forms.Label labelHsvTrack;
@@ -575,10 +576,10 @@
         private System.Windows.Forms.TrackBar trackBarH;
         private System.Windows.Forms.Label labelH;
         private System.Windows.Forms.Label labelHsvTitle;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button findFigures;
+        private System.Windows.Forms.Label labelBicolor;
+        private System.Windows.Forms.Label labelSharpBorders;
+        private System.Windows.Forms.Label labelSmoothBorders;
         private System.Windows.Forms.CheckBox checkBoxSmoothBorders;
         private System.Windows.Forms.CheckBox checkBoxSharpBorders;
         private System.Windows.Forms.CheckBox checkBoxBicolor;
