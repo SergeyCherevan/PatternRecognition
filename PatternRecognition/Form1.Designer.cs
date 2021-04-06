@@ -62,7 +62,7 @@
             this.trackBarH = new System.Windows.Forms.TrackBar();
             this.labelH = new System.Windows.Forms.Label();
             this.labelHsvTitle = new System.Windows.Forms.Label();
-            this.findFigures = new System.Windows.Forms.Button();
+            this.buttonFindFigures = new System.Windows.Forms.Button();
             this.labelBicolor = new System.Windows.Forms.Label();
             this.labelSharpBorders = new System.Windows.Forms.Label();
             this.labelSmoothBorders = new System.Windows.Forms.Label();
@@ -71,6 +71,8 @@
             this.checkBoxBicolor = new System.Windows.Forms.CheckBox();
             this.checkBoxNoiseSuppression = new System.Windows.Forms.CheckBox();
             this.labelNoiseSuppression = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -414,15 +416,15 @@
             this.labelHsvTitle.TabIndex = 25;
             this.labelHsvTitle.Text = "Определение схожести цветов по разнице отдельных каналов HSV:";
             // 
-            // findFigures
+            // buttonFindFigures
             // 
-            this.findFigures.Location = new System.Drawing.Point(1258, 80);
-            this.findFigures.Name = "findFigures";
-            this.findFigures.Size = new System.Drawing.Size(121, 32);
-            this.findFigures.TabIndex = 35;
-            this.findFigures.Text = "Найти фигуры";
-            this.findFigures.UseVisualStyleBackColor = true;
-            this.findFigures.Click += new System.EventHandler(this.findFigures_Click);
+            this.buttonFindFigures.Location = new System.Drawing.Point(1258, 80);
+            this.buttonFindFigures.Name = "buttonFindFigures";
+            this.buttonFindFigures.Size = new System.Drawing.Size(121, 32);
+            this.buttonFindFigures.TabIndex = 35;
+            this.buttonFindFigures.Text = "Найти фигуры";
+            this.buttonFindFigures.UseVisualStyleBackColor = true;
+            this.buttonFindFigures.Click += new System.EventHandler(this.buttonFindFigures_Click);
             // 
             // labelBicolor
             // 
@@ -499,11 +501,26 @@
             this.labelNoiseSuppression.TabIndex = 42;
             this.labelNoiseSuppression.Text = "Шумоподавление";
             // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(1693, 66);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(121, 61);
+            this.buttonSave.TabIndex = 44;
+            this.buttonSave.Text = "Сохранить изображение";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "PNG Image|*.png|JPeg Image|*.jpg";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1836, 755);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.checkBoxNoiseSuppression);
             this.Controls.Add(this.labelNoiseSuppression);
             this.Controls.Add(this.checkBoxBicolor);
@@ -512,7 +529,7 @@
             this.Controls.Add(this.labelSmoothBorders);
             this.Controls.Add(this.labelSharpBorders);
             this.Controls.Add(this.labelBicolor);
-            this.Controls.Add(this.findFigures);
+            this.Controls.Add(this.buttonFindFigures);
             this.Controls.Add(this.checkBoxHsv);
             this.Controls.Add(this.labelHsvTrack);
             this.Controls.Add(this.trackBarHsvChannels);
@@ -598,7 +615,7 @@
         private System.Windows.Forms.TrackBar trackBarH;
         private System.Windows.Forms.Label labelH;
         private System.Windows.Forms.Label labelHsvTitle;
-        private System.Windows.Forms.Button findFigures;
+        private System.Windows.Forms.Button buttonFindFigures;
         private System.Windows.Forms.Label labelBicolor;
         private System.Windows.Forms.Label labelSharpBorders;
         private System.Windows.Forms.Label labelSmoothBorders;
@@ -607,6 +624,8 @@
         private System.Windows.Forms.CheckBox checkBoxBicolor;
         private System.Windows.Forms.CheckBox checkBoxNoiseSuppression;
         private System.Windows.Forms.Label labelNoiseSuppression;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -279,7 +279,7 @@ namespace PatternRecognition
                 if (i > 10)
                     return null;
 
-                Pixel<COLOUR> neighbourPixel = WhichPixelUnionWith(pixel, this); // correct method, please
+                Pixel<COLOUR> neighbourPixel = WhichPixelUnionWith(pixel, this);
 
                 if (neighbourPixel == null)
                     return null;
