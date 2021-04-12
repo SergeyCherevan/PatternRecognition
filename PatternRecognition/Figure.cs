@@ -15,5 +15,8 @@ namespace PatternRecognition
 
         public LinkedList<Pixel<COLOUR>> pixels
             = new LinkedList<Pixel<COLOUR>>();
+
+        public LinkedList<(Pixel<COLOUR>, Pixel<COLOUR>)> contourPixels
+            = new LinkedList<(Pixel<COLOUR>, Pixel<COLOUR>)>();
     }
 }

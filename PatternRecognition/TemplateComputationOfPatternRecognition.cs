@@ -21,7 +21,9 @@ namespace PatternRecognition
 
         WhichPixelUnionWithDelegate WhichPixelUnionWith;
 
-        bool NoiseSuppression;
+        int CountOfNoiseSuppression;
+
+        bool isContourRecognition;
 
         public TemplateComputationOfPatternRecognition(RecognitionOptions ro)
         {
@@ -50,9 +52,9 @@ namespace PatternRecognition
 
 
 
-            NoiseSuppression = ro.NoiseSuppression;
+            CountOfNoiseSuppression = ro.CountOfNoiseSuppression;
 
-            if (NoiseSuppression)
+            if (CountOfNoiseSuppression > 0)
                 try
                 {
                         WhichPixelUnionWith = (p, tcpr) => (Pixel<COLOUR>)ro.WhichPixelUnionWith.DynamicInvoke(p, tcpr);
@@ -63,6 +65,8 @@ namespace PatternRecognition
                         ($"Type of WhichPixelUnionWith is not {typeof(WhichPixelUnionWithDelegate)}. " +
                          $"Type of WhichPixelUnionWith is {ro.WhichPixelUnionWith?.GetType()}");
                 }
+
+            isContourRecognition = ro.isContourRecognition;
         }
 
         /*-----------------------------------------------------*/
@@ -182,13 +186,13 @@ namespace PatternRecognition
 
 
 
-                IfWeMustThenAddPixelToTurn(p.y, p.x + 1);
+                AddPixelToTurnOrContour(p.y, p.x + 1);
 
-                IfWeMustThenAddPixelToTurn(p.y + 1, p.x);
+                AddPixelToTurnOrContour(p.y + 1, p.x);
 
-                IfWeMustThenAddPixelToTurn(p.y, p.x - 1);
+                AddPixelToTurnOrContour(p.y, p.x - 1);
 
-                IfWeMustThenAddPixelToTurn(p.y - 1, p.x);
+                AddPixelToTurnOrContour(p.y - 1, p.x);
             }
 
             return;
@@ -202,6 +206,12 @@ namespace PatternRecognition
                         ! DifBeetwinColours((p.color, pixelsM[y, x].color));
             }
 
+            bool MustWeAddPixelToContour(int y, int x)
+            {
+                return IsPixel(y, x) &&
+                       DifBeetwinColours((p.color, pixelsM[y, x].color));
+            }
+
             void AddPixelToTurn(int y, int x)
             {
                 pixelsTurn.AddLast(pixelsM[y, x]);
@@ -209,11 +219,20 @@ namespace PatternRecognition
                 pixelsM[y, x].figure = fig;
             }
 
-            void IfWeMustThenAddPixelToTurn(int y, int x)
+            void AddPixelToContour(int y, int x)
             {
-                if (MustWeAddPixelToTurn(y, x))
+                p.figure.contourPixels.AddLast( (p, pixelsM[y, x]) );
+            }
+
+            void AddPixelToTurnOrContour(int y, int x)
+            {
+                if ( MustWeAddPixelToTurn(y, x) )
                 {
                     AddPixelToTurn(y, x);
+                }
+                else if ( MustWeAddPixelToContour(y, x) )
+                {
+                    AddPixelToContour(y, x);
                 }
             }
         }
@@ -229,7 +248,7 @@ namespace PatternRecognition
 
         public void ClearFromNoise()
         {
-            if (!NoiseSuppression)
+            if (CountOfNoiseSuppression == 0)
                 return;
 
             // int oldCount = locker.counter;
@@ -276,7 +295,7 @@ namespace PatternRecognition
             foreach (Pixel<COLOUR> pixel in figure.pixels)
             {
                 ++i;
-                if (i > 10)
+                if (i > CountOfNoiseSuppression)
                     return null;
 
                 Pixel<COLOUR> neighbourPixel = WhichPixelUnionWith(pixel, this);
@@ -294,19 +313,44 @@ namespace PatternRecognition
 
         public Image RecolorImage(List<Color> colors)
         {
-            if (colors == null)
+            if (isContourRecognition)
             {
-                Random r = new Random();
+                return RecolorImageWithContours();
+            }
+            else
+            {
+                return RecolorImageWithFigure(colors);
+            }
+        }
 
-                int size = 50 + r.Next(50);
+        public Image RecolorImageWithContours()
+        {
+            bitmapOut = bitmapIn.Clone() as Bitmap;
 
-                colors = new List<Color>(size);
-
-                for(int i = 0; i < size; i++)
+            for(int y = 0; y < bitmapOut.Height; y++)
+            {
+                for (int x = 0; x < bitmapOut.Width; x++)
                 {
-                    colors.Add(Color.FromArgb(0xff, r.Next(0, 0x100), r.Next(0, 0x100), r.Next(0, 0x100)));
+                    bitmapOut.SetPixel(x, y, Color.White);
                 }
             }
+
+            foreach (Figure<COLOUR> figure in figureList)
+            {
+                foreach (var pixelPair in figure.contourPixels)
+                {
+                    bitmapOut.SetPixel(pixelPair.Item1.x, pixelPair.Item1.y, Color.Black);
+
+                    bitmapOut.SetPixel(pixelPair.Item2.x, pixelPair.Item2.y, Color.Black);
+                }
+            }
+
+            return bitmapOut;
+        }
+
+        public Image RecolorImageWithFigure(List<Color> colors)
+        {
+            colors = SetColors(colors);
 
             bitmapOut = bitmapIn.Clone() as Bitmap;
 
@@ -331,6 +375,25 @@ namespace PatternRecognition
             }
 
             return bitmapOut;
+        }
+
+        public List<Color> SetColors(List<Color> colors)
+        {
+            if (colors != null)
+                return null;
+
+            Random r = new Random();
+
+            int size = 50 + r.Next(50);
+
+            colors = new List<Color>(size);
+
+            for (int i = 0; i < size; i++)
+            {
+                colors.Add(Color.FromArgb(0xff, r.Next(0, 0x100), r.Next(0, 0x100), r.Next(0, 0x100)));
+            }
+
+            return colors;
         }
     }
 }

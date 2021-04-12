@@ -56,6 +56,8 @@ namespace PatternRecognition.RecognitionOptionsNamespace
         }
 
 
-        public virtual bool NoiseSuppression { get; set; }
+        public virtual int CountOfNoiseSuppression { get; set; }
+
+        public bool isContourRecognition { get; set; }
     }
 }

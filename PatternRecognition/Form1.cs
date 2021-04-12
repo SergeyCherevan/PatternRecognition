@@ -182,7 +182,8 @@ namespace PatternRecognition
 
             if (ro != null)
             {
-                ro.NoiseSuppression = checkBoxNoiseSuppression.Checked;
+                ro.CountOfNoiseSuppression = checkBoxNoiseSuppression.Checked ? (int)numericUpDownNoiseSuppression.Value : 0;
+                ro.isContourRecognition = checkBoxContourRecognition.Checked;
 
                 return ro;
             } 
@@ -235,13 +236,13 @@ namespace PatternRecognition
                     progressBar1.Value = Mprc.PatternRecognResult.locker.counter;
 
 
-                    label1.Visible = true;
+                    labelProgress.Visible = true;
 
-                    int w = label1.Width;
+                    int w = labelProgress.Width;
 
-                    label1.Text = progressBar1.Value + "/" + progressBar1.Maximum;
+                    labelProgress.Text = progressBar1.Value + "/" + progressBar1.Maximum;
 
-                    label1.Location = new Point(label1.Location.X - label1.Width + w, label1.Location.Y);
+                    labelProgress.Location = new Point(labelProgress.Location.X - labelProgress.Width + w, labelProgress.Location.Y);
                 }
                     
 
@@ -344,37 +345,55 @@ namespace PatternRecognition
 
         private void trackBarMaxLen_Scroll(object sender, EventArgs e)
         {
-            System.Windows.Forms.TrackBar myTB;
-            myTB = (System.Windows.Forms.TrackBar)sender;
+            TrackBar myTB;
+            myTB = (TrackBar)sender;
             labelMaxLenTrack.Text = "Пороговое значение расстояния: " + myTB.Value.ToString();
         }
 
         private void trackBarR_Scroll(object sender, EventArgs e)
         {
-            System.Windows.Forms.TrackBar myTB;
-            myTB = (System.Windows.Forms.TrackBar)sender;
+            TrackBar myTB;
+            myTB = (TrackBar)sender;
             labelR.Text = "Пороговое значение канала R: " + myTB.Value.ToString();
         }
 
         private void trackBarG_Scroll(object sender, EventArgs e)
         {
-            System.Windows.Forms.TrackBar myTB;
-            myTB = (System.Windows.Forms.TrackBar)sender;
+            TrackBar myTB;
+            myTB = (TrackBar)sender;
             labelG.Text = "Пороговое значение канала G: " + myTB.Value.ToString();
         }
 
         private void trackBarB_Scroll(object sender, EventArgs e)
         {
-            System.Windows.Forms.TrackBar myTB;
-            myTB = (System.Windows.Forms.TrackBar)sender;
+            TrackBar myTB;
+            myTB = (TrackBar)sender;
             labelB.Text = "Пороговое значение канала B: " + myTB.Value.ToString();
         }
 
         private void trackBarRgbChannels_Scroll(object sender, EventArgs e)
         {
-            System.Windows.Forms.TrackBar myTB;
-            myTB = (System.Windows.Forms.TrackBar)sender;
+            TrackBar myTB;
+            myTB = (TrackBar)sender;
             labelRgbChannelTrack.Text = "Минимальное количество каналлов с превышением: " + myTB.Value.ToString();
+        }
+
+        private void checkBoxNoiseSuppression_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDownNoiseSuppression.Enabled ^= true;
+
+            if (checkBoxNoiseSuppression.Checked)
+            {
+                checkBoxContourRecognition.Checked = false;
+            }
+        }
+
+        private void checkBoxContourRecognition_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxContourRecognition.Checked)
+            {
+                checkBoxNoiseSuppression.Checked = false;
+            }
         }
     }
 }

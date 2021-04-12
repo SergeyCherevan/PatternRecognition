@@ -37,7 +37,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelProgress = new System.Windows.Forms.Label();
             this.labelRgbCoordTitle = new System.Windows.Forms.Label();
             this.labelMaxLenTrack = new System.Windows.Forms.Label();
             this.trackBarMaxLen = new System.Windows.Forms.TrackBar();
@@ -73,6 +73,9 @@
             this.labelNoiseSuppression = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.numericUpDownNoiseSuppression = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxContourRecognition = new System.Windows.Forms.CheckBox();
+            this.labelContourRecognition = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -85,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoiseSuppression)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -95,14 +99,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1836, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1836, 30);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
             this.openFileMenuItem.Text = "Открыть";
             this.openFileMenuItem.Click += new System.EventHandler(this.openFileMenuItem_Click);
             // 
@@ -151,18 +155,18 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label1
+            // labelProgress
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(1179, 703);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "0/100";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.label1.Visible = false;
+            this.labelProgress.AutoSize = true;
+            this.labelProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelProgress.Location = new System.Drawing.Point(1179, 703);
+            this.labelProgress.Name = "labelProgress";
+            this.labelProgress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.labelProgress.Size = new System.Drawing.Size(50, 20);
+            this.labelProgress.TabIndex = 7;
+            this.labelProgress.Text = "0/100";
+            this.labelProgress.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.labelProgress.Visible = false;
             // 
             // labelRgbCoordTitle
             // 
@@ -486,20 +490,21 @@
             // checkBoxNoiseSuppression
             // 
             this.checkBoxNoiseSuppression.AutoSize = true;
-            this.checkBoxNoiseSuppression.Location = new System.Drawing.Point(1586, 689);
+            this.checkBoxNoiseSuppression.Location = new System.Drawing.Point(1586, 690);
             this.checkBoxNoiseSuppression.Name = "checkBoxNoiseSuppression";
             this.checkBoxNoiseSuppression.Size = new System.Drawing.Size(18, 17);
             this.checkBoxNoiseSuppression.TabIndex = 43;
             this.checkBoxNoiseSuppression.UseVisualStyleBackColor = true;
+            this.checkBoxNoiseSuppression.CheckedChanged += new System.EventHandler(this.checkBoxNoiseSuppression_CheckedChanged);
             // 
             // labelNoiseSuppression
             // 
             this.labelNoiseSuppression.AutoSize = true;
             this.labelNoiseSuppression.Location = new System.Drawing.Point(1255, 689);
             this.labelNoiseSuppression.Name = "labelNoiseSuppression";
-            this.labelNoiseSuppression.Size = new System.Drawing.Size(122, 17);
+            this.labelNoiseSuppression.Size = new System.Drawing.Size(126, 17);
             this.labelNoiseSuppression.TabIndex = 42;
-            this.labelNoiseSuppression.Text = "Шумоподавление";
+            this.labelNoiseSuppression.Text = "Шумоподавление:";
             // 
             // buttonSave
             // 
@@ -515,11 +520,47 @@
             // 
             this.saveFileDialog1.Filter = "PNG Image|*.png|JPeg Image|*.jpg";
             // 
+            // numericUpDownNoiseSuppression
+            // 
+            this.numericUpDownNoiseSuppression.Enabled = false;
+            this.numericUpDownNoiseSuppression.Location = new System.Drawing.Point(1440, 687);
+            this.numericUpDownNoiseSuppression.Name = "numericUpDownNoiseSuppression";
+            this.numericUpDownNoiseSuppression.Size = new System.Drawing.Size(60, 22);
+            this.numericUpDownNoiseSuppression.TabIndex = 45;
+            this.numericUpDownNoiseSuppression.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDownNoiseSuppression.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // checkBoxContourRecognition
+            // 
+            this.checkBoxContourRecognition.AutoSize = true;
+            this.checkBoxContourRecognition.Location = new System.Drawing.Point(1586, 730);
+            this.checkBoxContourRecognition.Name = "checkBoxContourRecognition";
+            this.checkBoxContourRecognition.Size = new System.Drawing.Size(18, 17);
+            this.checkBoxContourRecognition.TabIndex = 47;
+            this.checkBoxContourRecognition.UseVisualStyleBackColor = true;
+            this.checkBoxContourRecognition.CheckedChanged += new System.EventHandler(this.checkBoxContourRecognition_CheckedChanged);
+            // 
+            // labelContourRecognition
+            // 
+            this.labelContourRecognition.AutoSize = true;
+            this.labelContourRecognition.Location = new System.Drawing.Point(1255, 729);
+            this.labelContourRecognition.Name = "labelContourRecognition";
+            this.labelContourRecognition.Size = new System.Drawing.Size(163, 17);
+            this.labelContourRecognition.TabIndex = 46;
+            this.labelContourRecognition.Text = "Определение контуров";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1836, 755);
+            this.ClientSize = new System.Drawing.Size(1836, 773);
+            this.Controls.Add(this.checkBoxContourRecognition);
+            this.Controls.Add(this.labelContourRecognition);
+            this.Controls.Add(this.numericUpDownNoiseSuppression);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.checkBoxNoiseSuppression);
             this.Controls.Add(this.labelNoiseSuppression);
@@ -554,7 +595,7 @@
             this.Controls.Add(this.trackBarMaxLen);
             this.Controls.Add(this.labelMaxLenTrack);
             this.Controls.Add(this.labelRgbCoordTitle);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelProgress);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox2);
@@ -575,6 +616,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNoiseSuppression)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,7 +632,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelProgress;
         private System.Windows.Forms.Label labelRgbCoordTitle;
         private System.Windows.Forms.Label labelMaxLenTrack;
         private System.Windows.Forms.TrackBar trackBarMaxLen;
@@ -626,6 +668,9 @@
         private System.Windows.Forms.Label labelNoiseSuppression;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.NumericUpDown numericUpDownNoiseSuppression;
+        private System.Windows.Forms.CheckBox checkBoxContourRecognition;
+        private System.Windows.Forms.Label labelContourRecognition;
     }
 }
 
