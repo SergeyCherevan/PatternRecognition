@@ -34,7 +34,7 @@ namespace PatternRecognition
 
         private void recoginteSymbolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
