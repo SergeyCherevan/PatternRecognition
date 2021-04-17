@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureRecognition", "PatternRecognition\FigureRecognition.csproj", "{E97ACE29-9950-41B0-A7B5-5C015438113B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureRecognition", "FigureRecognition\FigureRecognition.csproj", "{E97ACE29-9950-41B0-A7B5-5C015438113B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymbolRecognition", "SymbolRecognition\SymbolRecognition.csproj", "{017607E4-6F78-45D9-9619-26D59B49FA5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymbolRecognition", "SymbolRecognition\SymbolRecognition.csproj", "{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{E97ACE29-9950-41B0-A7B5-5C015438113B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97ACE29-9950-41B0-A7B5-5C015438113B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97ACE29-9950-41B0-A7B5-5C015438113B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{017607E4-6F78-45D9-9619-26D59B49FA5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{017607E4-6F78-45D9-9619-26D59B49FA5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{017607E4-6F78-45D9-9619-26D59B49FA5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{017607E4-6F78-45D9-9619-26D59B49FA5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
