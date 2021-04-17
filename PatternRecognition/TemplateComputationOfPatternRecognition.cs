@@ -182,6 +182,11 @@ namespace PatternRecognition
 
                 fig.pixels.AddLast(p);
 
+                fig.sumOfX += p.x;
+                fig.sumOfY += p.y;
+
+                ++fig.countOfPixels;
+
                 lock (locker) ++locker.counter;
 
 
@@ -222,6 +227,16 @@ namespace PatternRecognition
             void AddPixelToContour(int y, int x)
             {
                 p.figure.contourPixels.AddLast( (p, pixelsM[y, x]) );
+
+                AddInformOfMinMax(p);
+            }
+
+            void AddInformOfMinMax(Pixel<COLOUR> pixel)
+            {
+                fig.minX = Math.Min(fig.minX, pixel.x);
+                fig.minY = Math.Min(fig.minY, pixel.y);
+                fig.maxX = Math.Max(fig.maxX, pixel.x);
+                fig.maxY = Math.Max(fig.maxY, pixel.y);
             }
 
             void AddPixelToTurnOrContour(int y, int x)
@@ -290,14 +305,11 @@ namespace PatternRecognition
         {
             LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> resultList = new LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)>();
 
-            int i = 0;
+            if (figure.countOfPixels > CountOfNoiseSuppression)
+                return null;
 
             foreach (Pixel<COLOUR> pixel in figure.pixels)
             {
-                ++i;
-                if (i > CountOfNoiseSuppression)
-                    return null;
-
                 Pixel<COLOUR> neighbourPixel = WhichPixelUnionWith(pixel, this);
 
                 if (neighbourPixel == null)
@@ -337,11 +349,9 @@ namespace PatternRecognition
 
             foreach (Figure<COLOUR> figure in figureList)
             {
-                foreach (var pixelPair in figure.contourPixels)
+                foreach (var (pixel, _) in figure.contourPixels)
                 {
-                    bitmapOut.SetPixel(pixelPair.Item1.x, pixelPair.Item1.y, Color.Black);
-
-                    bitmapOut.SetPixel(pixelPair.Item2.x, pixelPair.Item2.y, Color.Black);
+                    bitmapOut.SetPixel(pixel.x, pixel.y, Color.Black);
                 }
             }
 

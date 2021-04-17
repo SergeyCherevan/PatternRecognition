@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternRecognition", "PatternRecognition\PatternRecognition.csproj", "{E97ACE29-9950-41B0-A7B5-5C015438113B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureRecognition", "PatternRecognition\FigureRecognition.csproj", "{E97ACE29-9950-41B0-A7B5-5C015438113B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
