@@ -36,24 +36,47 @@ namespace PatternRecognition.RecognitionOptionsNamespace
         {
             _WhichPixelUnionWith = (WhichPixelUnionWithDelegate)((p, tcpr) =>
             {
+                List<Pixel<Color>> pixelsList = new List<Pixel<Color>>(4);
+
+
+
                 if (tcpr.IsPixel(p.y, p.x - 1) && p.figure != tcpr.pixelsM[p.y, p.x - 1].figure)
 
-                    return tcpr.pixelsM[p.y, p.x - 1];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y, p.x - 1]);
+
+
                 if (tcpr.IsPixel(p.y - 1, p.x) && p.figure != tcpr.pixelsM[p.y - 1, p.x].figure)
 
-                    return tcpr.pixelsM[p.y - 1, p.x];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y - 1, p.x]);
+
+
                 if (tcpr.IsPixel(p.y, p.x + 1) && p.figure != tcpr.pixelsM[p.y, p.x + 1].figure)
 
-                    return tcpr.pixelsM[p.y, p.x + 1];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y, p.x + 1]);
+
+
                 if (tcpr.IsPixel(p.y + 1, p.x) && p.figure != tcpr.pixelsM[p.y + 1, p.x].figure)
 
-                    return tcpr.pixelsM[p.y + 1, p.x];
+                    pixelsList.Add(tcpr.pixelsM[p.y + 1, p.x]);
 
 
-                return null;
+                if (pixelsList.Count == 0) return null;
+
+                pixelsList.Sort((p1, p2) => (int)(
+                                          Math.Sqrt(
+                                                  Math.Pow(p1.color.R - p.color.R, 2) +
+                                                  Math.Pow(p1.color.G - p.color.G, 2) +
+                                                  Math.Pow(p1.color.B - p.color.B, 2)
+                                              )
+                                        - Math.Sqrt(
+                                                  Math.Pow(p2.color.R - p.color.R, 2) +
+                                                  Math.Pow(p2.color.G - p.color.G, 2) +
+                                                  Math.Pow(p2.color.B - p.color.B, 2)
+                                              )
+                                          )
+                       );
+
+                return pixelsList[0];
             });
         }
     }

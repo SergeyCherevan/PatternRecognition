@@ -24,24 +24,47 @@ namespace PatternRecognition.RecognitionOptionsNamespace
 
             _WhichPixelUnionWith = (WhichPixelUnionWithDelegate)((p, tcpr) =>
             {
+                List<Pixel<HSV>> pixelsList = new List<Pixel<HSV>>(4);
+
+
+
                 if (tcpr.IsPixel(p.y, p.x - 1) && p.figure != tcpr.pixelsM[p.y, p.x - 1].figure)
 
-                    return tcpr.pixelsM[p.y, p.x - 1];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y, p.x - 1]);
+
+
                 if (tcpr.IsPixel(p.y - 1, p.x) && p.figure != tcpr.pixelsM[p.y - 1, p.x].figure)
 
-                    return tcpr.pixelsM[p.y - 1, p.x];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y - 1, p.x]);
+
+
                 if (tcpr.IsPixel(p.y, p.x + 1) && p.figure != tcpr.pixelsM[p.y, p.x + 1].figure)
 
-                    return tcpr.pixelsM[p.y, p.x + 1];
-                else
+                    pixelsList.Add(tcpr.pixelsM[p.y, p.x + 1]);
+
+
                 if (tcpr.IsPixel(p.y + 1, p.x) && p.figure != tcpr.pixelsM[p.y + 1, p.x].figure)
 
-                    return tcpr.pixelsM[p.y + 1, p.x];
+                    pixelsList.Add(tcpr.pixelsM[p.y + 1, p.x]);
 
 
-                return null;
+                if (pixelsList.Count == 0) return null;
+
+                pixelsList.Sort((p1, p2) => (int)(
+                                          Math.Sqrt(
+                                                  Math.Pow((double)(p1.color.H - p.color.H), 2) +
+                                                  Math.Pow((double)(p1.color.S - p.color.S), 2) +
+                                                  Math.Pow((double)(p1.color.V - p.color.V), 2)
+                                              )
+                                        - Math.Sqrt(
+                                                  Math.Pow((double)(p2.color.H - p.color.H), 2) +
+                                                  Math.Pow((double)(p2.color.S - p.color.S), 2) +
+                                                  Math.Pow((double)(p2.color.V - p.color.V), 2)
+                                              )
+                                          )
+                       );
+
+                return pixelsList[0];
             });
         }
 
