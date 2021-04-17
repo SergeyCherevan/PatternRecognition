@@ -271,30 +271,39 @@ namespace PatternRecognition
             // locker.counter = locker.counter;
 
 
-            LinkedListNode<Figure<COLOUR>> figureNode, nextFigureNode;
+            bool b = true;
 
-            for (
-                    figureNode = figureList.First;
-                    figureNode != null;
-                    figureNode = nextFigureNode
-                )
+            while (b)
             {
-                Figure<COLOUR> figure = figureNode.Value;
+                b = false;
 
-                nextFigureNode = figureNode.Next;
+                LinkedListNode<Figure<COLOUR>> figureNode, nextFigureNode;
 
-                LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> distributedPixels
-                                                            = MapOfDistributedPixelsOrNull(figure);
-
-                if (distributedPixels != null)
+                for (
+                        figureNode = figureList.First;
+                        figureNode != null;
+                        figureNode = nextFigureNode
+                    )
                 {
-                    foreach ( (Pixel<COLOUR> pixel, Figure<COLOUR> newFigure) in distributedPixels )
-                    {
-                        pixel.figure = newFigure;
-                        newFigure.pixels.AddLast(pixel);
-                    }
+                    Figure<COLOUR> figure = figureNode.Value;
 
-                    figureList.Remove(figureNode);
+                    nextFigureNode = figureNode.Next;
+
+                    LinkedList<(Pixel<COLOUR>, Figure<COLOUR>)> distributedPixels
+                                                                = MapOfDistributedPixelsOrNull(figure);
+
+                    if (distributedPixels != null)
+                    {
+                        b = true;
+
+                        foreach ( (Pixel<COLOUR> pixel, Figure<COLOUR> newFigure) in distributedPixels )
+                        {
+                            pixel.figure = newFigure;
+                            newFigure.pixels.AddLast(pixel);
+                        }
+
+                        figureList.Remove(figureNode);
+                    }
                 }
             }
 

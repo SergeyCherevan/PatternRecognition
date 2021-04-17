@@ -99,14 +99,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1836, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1836, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
             this.openFileMenuItem.Text = "Открыть";
             this.openFileMenuItem.Click += new System.EventHandler(this.openFileMenuItem_Click);
             // 
@@ -524,6 +524,11 @@
             // 
             this.numericUpDownNoiseSuppression.Enabled = false;
             this.numericUpDownNoiseSuppression.Location = new System.Drawing.Point(1440, 687);
+            this.numericUpDownNoiseSuppression.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
             this.numericUpDownNoiseSuppression.Name = "numericUpDownNoiseSuppression";
             this.numericUpDownNoiseSuppression.Size = new System.Drawing.Size(60, 22);
             this.numericUpDownNoiseSuppression.TabIndex = 45;
