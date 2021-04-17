@@ -14,6 +14,20 @@ namespace PatternRecognition
 
         int W { get; set; }
 
+        public Symbol()
+        {
+            H = W = 3;
+
+            figure = null;
+        }
+
+        public Symbol(Figure<bool> f, int h, int w)
+        {
+            figure = f;
+
+            H = h; W = w;
+        }
+
         public double[,] Areas()
         {
             int width = figure.maxX - figure.minX;
