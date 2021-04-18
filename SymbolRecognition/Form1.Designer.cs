@@ -35,11 +35,11 @@ namespace PatternRecognition
             this.recoginteSymbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trainTheSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.labelProgress = new System.Windows.Forms.Label();
-            this.пройтиОбучениеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +67,7 @@ namespace PatternRecognition
             // recoginteSymbolToolStripMenuItem
             // 
             this.recoginteSymbolToolStripMenuItem.Name = "recoginteSymbolToolStripMenuItem";
-            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(172, 24);
+            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(172, 28);
             this.recoginteSymbolToolStripMenuItem.Text = "Распознатьть символ";
             this.recoginteSymbolToolStripMenuItem.Click += new System.EventHandler(this.recoginteSymbolToolStripMenuItem_Click);
             // 
@@ -76,21 +76,28 @@ namespace PatternRecognition
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFileMenuItem,
-            this.пройтиОбучениеToolStripMenuItem,
+            this.trainTheSystemToolStripMenuItem,
             this.recoginteSymbolToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(623, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(623, 30);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
             this.openFileMenuItem.Text = "Открыть";
             this.openFileMenuItem.Click += new System.EventHandler(this.openFileMenuItem_Click);
+            // 
+            // trainTheSystemToolStripMenuItem
+            // 
+            this.trainTheSystemToolStripMenuItem.Name = "trainTheSystemToolStripMenuItem";
+            this.trainTheSystemToolStripMenuItem.Size = new System.Drawing.Size(140, 28);
+            this.trainTheSystemToolStripMenuItem.Text = "Обучить систему";
+            this.trainTheSystemToolStripMenuItem.Click += new System.EventHandler(this.trainTheSystemToolStripMenuItem_Click);
             // 
             // imageList1
             // 
@@ -114,12 +121,6 @@ namespace PatternRecognition
             this.labelProgress.Text = "0/100";
             this.labelProgress.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.labelProgress.Visible = false;
-            // 
-            // пройтиОбучениеToolStripMenuItem
-            // 
-            this.пройтиОбучениеToolStripMenuItem.Name = "пройтиОбучениеToolStripMenuItem";
-            this.пройтиОбучениеToolStripMenuItem.Size = new System.Drawing.Size(147, 24);
-            this.пройтиОбучениеToolStripMenuItem.Text = "Пройти обучение";
             // 
             // Form1
             // 
@@ -151,7 +152,7 @@ namespace PatternRecognition
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label labelProgress;
-        private System.Windows.Forms.ToolStripMenuItem пройтиОбучениеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trainTheSystemToolStripMenuItem;
     }
 }
 

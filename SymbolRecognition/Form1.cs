@@ -13,6 +13,8 @@ namespace PatternRecognition
 {
     public partial class Form1 : Form
     {
+        FormDialog formDialog = new FormDialog();
+
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +40,13 @@ namespace PatternRecognition
         public ManagerOfPatternRecognComputation Mprc { get; private set; }
 
         Symbol symbol;
+
+        private void trainTheSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formDialog.ShowDialog();
+            
+            
+        }
 
 
 
