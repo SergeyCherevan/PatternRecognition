@@ -50,17 +50,18 @@ namespace PatternRecognition
             {
                 string path = saveFileDialog1.FileName;
 
-                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
-
-                switch (saveFileDialog1.FilterIndex)
+                using ( System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile() )
                 {
-                    case 1:
-                        pictureBox2.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-                        break;
+                    switch (saveFileDialog1.FilterIndex)
+                    {
+                        case 1:
+                            pictureBox2.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                            break;
 
-                    case 2:
-                        pictureBox2.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                        break;
+                        case 2:
+                            pictureBox2.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            break;
+                    }
                 }
             }
             else

@@ -13,15 +13,20 @@ namespace PatternRecognition
 {
     public class ComputationOfSymbolRecognition
     {
+        public bool isValid = false;
+
         public int H, W;
 
         public LinkedList<(double[,], string)> mapOfSymbols = new LinkedList<(double[,], string)>();
 
-        public void SetMapToFile(string path)
+        public void SetMapToJson(string path)
         {
+            if (!isValid)
+                throw new ArgumentException("Объект класса ComputationOfSymbolRecognition не был инициализирован перед записью в файл.");
+
             StreamWriter file = new StreamWriter(path, false);
 
-            var jsonSerializer = new Newtonsoft.Json.JsonSerializer();
+            var jsonSerializer = new JsonSerializer();
             jsonSerializer.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             jsonSerializer.TypeNameHandling = TypeNameHandling.Auto;
             jsonSerializer.Formatting = Formatting.Indented;
@@ -32,9 +37,11 @@ namespace PatternRecognition
 
             jsonWriter.Close();
             file.Close();
+
+            MessageBox.Show("Запись днных в JSON произведена!", "Сообщение");
         }
 
-        public void GetMapFromFile(string path)
+        public void GetMapFromJson(string path)
         {
             StreamReader file = new StreamReader(path, false);
 
@@ -53,6 +60,10 @@ namespace PatternRecognition
 
             jsonReader.Close();
             file.Close();
+
+            isValid = true;
+
+            MessageBox.Show("Считывание днных из JSON произведено!", "Сообщение");
         }
 
         public void GetMapFromImagesBank(string path, int h, int w)
@@ -84,6 +95,45 @@ namespace PatternRecognition
                 ),
                 "Результаты обучения"
                 );*/
+
+            isValid = true;
+
+            MessageBox.Show("Обучение успешно пройдено!", "Сообщение");
+        }
+
+        public string RecogniteSymbol(Symbol symbol)
+        {
+            if (!isValid)
+                throw new ArgumentException("Объект класса ComputationOfSymbolRecognition не был инициализирован перед записью в файл.");
+
+            double[,] symbolAreas = symbol.GetAreas();
+
+            double minDif = Double.MaxValue;
+            string nearestSymb = null;
+
+            foreach (var (curAreas, curSymb) in mapOfSymbols)
+            {
+                double dif = 0;
+
+                for (int y = 0; y < curAreas.GetLength(0); y++)
+                {
+                    for (int x = 0; x < curAreas.GetLength(1); x++)
+                    {
+                        dif += Math.Pow(curAreas[y, x] - symbolAreas[y, x], 2);
+                    }
+                }
+
+                dif = Math.Sqrt(dif);
+
+                if(minDif > dif)
+                {
+                    minDif = dif;
+
+                    nearestSymb = curSymb;
+                }
+            }
+
+            return nearestSymb;
         }
     }
 }

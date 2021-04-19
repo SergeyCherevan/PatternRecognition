@@ -24,11 +24,11 @@ namespace PatternRecognition
 
         private void openImageMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = openImageDialog.ShowDialog();
+            DialogResult result = openFileDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                string path = openImageDialog.FileName;
+                string path = openFileDialog.FileName;
                 pictureBox1.Image = Image.FromFile(path);
             }
             else
@@ -61,12 +61,41 @@ namespace PatternRecognition
             }
         }
 
-        /*private void trainTheSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        private void writeResultOfLearningToJsonFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
-            
-        }*/
+            DialogResult result = saveJsonDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string path = saveJsonDialog.FileName;
+
+                csr.SetMapToJson(path);
+            }
+            else
+            {
+                MessageBox.Show("Место сохранения или имя файла не выбрано", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void selectFileWithKeyValuePairsSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Filter = "JSON file|*.json";
+
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+
+                csr.GetMapFromJson(path);
+            }
+            else
+            {
+                MessageBox.Show("Json-файл не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            openFileDialog.Filter = "";
+        }
 
 
 
@@ -146,12 +175,9 @@ namespace PatternRecognition
                 progressBar1.Visible = false;
                 try
                 {
-                    double[,] areas = symbol.GetAreas();
+                    string result = csr.RecogniteSymbol(symbol);
 
-                    MessageBox.Show($"{areas[0,0].ToString("0.####")}\t{areas[0,1].ToString("0.####")}\t{areas[0,2].ToString("0.####")}\n" +
-                                    $"{areas[1,0].ToString("0.####")}\t{areas[1,1].ToString("0.####")}\t{areas[1,2].ToString("0.####")}\n" +
-                                    $"{areas[2,0].ToString("0.####")}\t{areas[2,1].ToString("0.####")}\t{areas[2,2].ToString("0.####")}" ,
-                        "Распознавание символа на изображении");
+                    MessageBox.Show(result, "Распознавание символа на изображении");
                 }
                 catch (Exception ex)
                 {

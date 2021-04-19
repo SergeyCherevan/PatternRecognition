@@ -41,16 +41,17 @@ namespace PatternRecognition
             this.selectFileWithKeyValuePairsSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.labelProgress = new System.Windows.Forms.Label();
             this.openFolderDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveJsonDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(11, 672);
+            this.progressBar1.Location = new System.Drawing.Point(11, 695);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(485, 31);
             this.progressBar1.Step = 1;
@@ -60,7 +61,7 @@ namespace PatternRecognition
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 51);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 74);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(600, 600);
@@ -71,7 +72,7 @@ namespace PatternRecognition
             // recoginteSymbolToolStripMenuItem
             // 
             this.recoginteSymbolToolStripMenuItem.Name = "recoginteSymbolToolStripMenuItem";
-            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(158, 28);
             this.recoginteSymbolToolStripMenuItem.Text = "Распознать символ";
             this.recoginteSymbolToolStripMenuItem.Click += new System.EventHandler(this.recoginteSymbolToolStripMenuItem_Click);
             // 
@@ -92,7 +93,7 @@ namespace PatternRecognition
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
             this.openFileMenuItem.Text = "Открыть";
             this.openFileMenuItem.Click += new System.EventHandler(this.openImageMenuItem_Click);
             // 
@@ -103,7 +104,7 @@ namespace PatternRecognition
             this.writeResultOfLearningToJsonFileToolStripMenuItem,
             this.selectFileWithKeyValuePairsSetToolStripMenuItem});
             this.trainTheSystemToolStripMenuItem.Name = "trainTheSystemToolStripMenuItem";
-            this.trainTheSystemToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
+            this.trainTheSystemToolStripMenuItem.Size = new System.Drawing.Size(140, 28);
             this.trainTheSystemToolStripMenuItem.Text = "Обучить систему";
             // 
             // SelectFolderWithTrainingSampleToolStripMenuItem
@@ -118,12 +119,14 @@ namespace PatternRecognition
             this.writeResultOfLearningToJsonFileToolStripMenuItem.Name = "writeResultOfLearningToJsonFileToolStripMenuItem";
             this.writeResultOfLearningToJsonFileToolStripMenuItem.Size = new System.Drawing.Size(411, 26);
             this.writeResultOfLearningToJsonFileToolStripMenuItem.Text = "Записать результаты обучения в json-файл";
+            this.writeResultOfLearningToJsonFileToolStripMenuItem.Click += new System.EventHandler(this.writeResultOfLearningToJsonFileToolStripMenuItem_Click);
             // 
             // selectFileWithKeyValuePairsSetToolStripMenuItem
             // 
             this.selectFileWithKeyValuePairsSetToolStripMenuItem.Name = "selectFileWithKeyValuePairsSetToolStripMenuItem";
             this.selectFileWithKeyValuePairsSetToolStripMenuItem.Size = new System.Drawing.Size(411, 26);
             this.selectFileWithKeyValuePairsSetToolStripMenuItem.Text = "Выбрать файл с набором пар ключ-значение";
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem.Click += new System.EventHandler(this.selectFileWithKeyValuePairsSetToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -135,15 +138,11 @@ namespace PatternRecognition
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // openImageDialog
-            // 
-            this.openImageDialog.FileName = "openFileDialog1";
-            // 
             // labelProgress
             // 
             this.labelProgress.AutoSize = true;
             this.labelProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.labelProgress.Location = new System.Drawing.Point(565, 677);
+            this.labelProgress.Location = new System.Drawing.Point(565, 700);
             this.labelProgress.Name = "labelProgress";
             this.labelProgress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelProgress.Size = new System.Drawing.Size(50, 20);
@@ -158,6 +157,10 @@ namespace PatternRecognition
             this.openFolderDialog.FileName = "Имя файла будет проигнорировано";
             this.openFolderDialog.ReadOnlyChecked = true;
             this.openFolderDialog.ValidateNames = false;
+            // 
+            // saveJsonDialog
+            // 
+            this.saveJsonDialog.Filter = "JSON-file|*.json";
             // 
             // Form1
             // 
@@ -187,13 +190,14 @@ namespace PatternRecognition
         private System.Windows.Forms.ToolStripMenuItem openFileMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.OpenFileDialog openImageDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label labelProgress;
         private System.Windows.Forms.ToolStripMenuItem trainTheSystemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SelectFolderWithTrainingSampleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectFileWithKeyValuePairsSetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeResultOfLearningToJsonFileToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFolderDialog;
+        private System.Windows.Forms.SaveFileDialog saveJsonDialog;
     }
 }
 
