@@ -15,7 +15,7 @@ namespace PatternRecognition
     {
         Select_H_W_Dialog select_H_W_Dialog = new Select_H_W_Dialog();
 
-        ComputationOfSymbolRecognition csr = new ComputationOfSymbolRecognition();
+        ComputationOfSymbolRecognition Csr = new ComputationOfSymbolRecognition();
 
         public Form1()
         {
@@ -53,7 +53,7 @@ namespace PatternRecognition
 
                 select_H_W_Dialog.ShowDialog();
 
-                csr.GetMapFromImagesBank(path, select_H_W_Dialog.H, select_H_W_Dialog.W);
+                Csr.GetMapFromImagesBank(path, select_H_W_Dialog.H, select_H_W_Dialog.W);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace PatternRecognition
             {
                 string path = saveJsonDialog.FileName;
 
-                csr.SetMapToJson(path);
+                Csr.SetMapToJson(path);
             }
             else
             {
@@ -87,7 +87,7 @@ namespace PatternRecognition
             {
                 string path = openFileDialog.FileName;
 
-                csr.GetMapFromJson(path);
+                Csr.GetMapFromJson(path);
             }
             else
             {
@@ -146,7 +146,7 @@ namespace PatternRecognition
         private void ConfigureInterfaceBeforeThreadedComputing()
         {
             progressBar1.Maximum = pictureBox1.Image.Height
-                                        * pictureBox1.Image.Width;
+                                        * pictureBox1.Image.Width + Csr.mapOfSymbols.Count;
             progressBar1.Value = 0;
             progressBar1.Visible = true;
 
@@ -175,7 +175,7 @@ namespace PatternRecognition
                 progressBar1.Visible = false;
                 try
                 {
-                    string result = csr.RecogniteSymbol(symbol);
+                    string result = Csr.RecogniteSymbol(symbol);
 
                     MessageBox.Show(result, "Распознавание символа на изображении");
                 }
@@ -188,10 +188,11 @@ namespace PatternRecognition
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (Mprc?.PatternRecognResult?.locker != null)
+            if (Mprc?.PatternRecognResult?.locker != null && Csr?.locker != null)
                 lock (Mprc.PatternRecognResult.locker)
+                lock (Csr.locker)
                 {
-                    progressBar1.Value = Mprc.PatternRecognResult.locker.counter;
+                    progressBar1.Value = Mprc.PatternRecognResult.locker.counter + Csr.locker.counter;
 
 
                     labelProgress.Visible = true;

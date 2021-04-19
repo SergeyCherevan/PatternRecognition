@@ -111,6 +111,8 @@ namespace PatternRecognition
             double minDif = Double.MaxValue;
             string nearestSymb = null;
 
+            lock (locker) locker.counter = 0;
+
             foreach (var (curAreas, curSymb) in mapOfSymbols)
             {
                 double dif = 0;
@@ -131,9 +133,16 @@ namespace PatternRecognition
 
                     nearestSymb = curSymb;
                 }
+
+                lock (locker) locker.counter++;
             }
 
             return nearestSymb;
         }
+
+        /*-----------------------------------------------------*/
+
+        public class CountVariableLocker { public volatile int counter; }
+        public CountVariableLocker locker = new CountVariableLocker();
     }
 }
