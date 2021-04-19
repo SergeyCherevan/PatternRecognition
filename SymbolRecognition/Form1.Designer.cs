@@ -36,10 +36,14 @@ namespace PatternRecognition
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trainTheSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SelectFolderWithTrainingSampleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeResultOfLearningToJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.labelProgress = new System.Windows.Forms.Label();
+            this.openFolderDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,8 +71,8 @@ namespace PatternRecognition
             // recoginteSymbolToolStripMenuItem
             // 
             this.recoginteSymbolToolStripMenuItem.Name = "recoginteSymbolToolStripMenuItem";
-            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(172, 28);
-            this.recoginteSymbolToolStripMenuItem.Text = "Распознатьть символ";
+            this.recoginteSymbolToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.recoginteSymbolToolStripMenuItem.Text = "Распознать символ";
             this.recoginteSymbolToolStripMenuItem.Click += new System.EventHandler(this.recoginteSymbolToolStripMenuItem_Click);
             // 
             // menuStrip1
@@ -81,23 +85,49 @@ namespace PatternRecognition
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(623, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(623, 26);
             this.menuStrip1.TabIndex = 48;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // openFileMenuItem
             // 
             this.openFileMenuItem.Name = "openFileMenuItem";
-            this.openFileMenuItem.Size = new System.Drawing.Size(81, 28);
+            this.openFileMenuItem.Size = new System.Drawing.Size(81, 24);
             this.openFileMenuItem.Text = "Открыть";
-            this.openFileMenuItem.Click += new System.EventHandler(this.openFileMenuItem_Click);
+            this.openFileMenuItem.Click += new System.EventHandler(this.openImageMenuItem_Click);
             // 
             // trainTheSystemToolStripMenuItem
             // 
+            this.trainTheSystemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SelectFolderWithTrainingSampleToolStripMenuItem,
+            this.writeResultOfLearningToJsonFileToolStripMenuItem,
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem});
             this.trainTheSystemToolStripMenuItem.Name = "trainTheSystemToolStripMenuItem";
-            this.trainTheSystemToolStripMenuItem.Size = new System.Drawing.Size(140, 28);
+            this.trainTheSystemToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
             this.trainTheSystemToolStripMenuItem.Text = "Обучить систему";
-            this.trainTheSystemToolStripMenuItem.Click += new System.EventHandler(this.trainTheSystemToolStripMenuItem_Click);
+            // 
+            // SelectFolderWithTrainingSampleToolStripMenuItem
+            // 
+            this.SelectFolderWithTrainingSampleToolStripMenuItem.Name = "SelectFolderWithTrainingSampleToolStripMenuItem";
+            this.SelectFolderWithTrainingSampleToolStripMenuItem.Size = new System.Drawing.Size(411, 26);
+            this.SelectFolderWithTrainingSampleToolStripMenuItem.Text = "Выбрать папку с обучающей выборкой";
+            this.SelectFolderWithTrainingSampleToolStripMenuItem.Click += new System.EventHandler(this.SelectFolderWithTrainingSampleToolStripMenuItem_Click);
+            // 
+            // writeResultOfLearningToJsonFileToolStripMenuItem
+            // 
+            this.writeResultOfLearningToJsonFileToolStripMenuItem.Name = "writeResultOfLearningToJsonFileToolStripMenuItem";
+            this.writeResultOfLearningToJsonFileToolStripMenuItem.Size = new System.Drawing.Size(411, 26);
+            this.writeResultOfLearningToJsonFileToolStripMenuItem.Text = "Записать результаты обучения в json-файл";
+            // 
+            // selectFileWithKeyValuePairsSetToolStripMenuItem
+            // 
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem.Name = "selectFileWithKeyValuePairsSetToolStripMenuItem";
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem.Size = new System.Drawing.Size(411, 26);
+            this.selectFileWithKeyValuePairsSetToolStripMenuItem.Text = "Выбрать файл с набором пар ключ-значение";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // imageList1
             // 
@@ -105,9 +135,9 @@ namespace PatternRecognition
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // openFileDialog1
+            // openImageDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openImageDialog.FileName = "openFileDialog1";
             // 
             // labelProgress
             // 
@@ -121,6 +151,13 @@ namespace PatternRecognition
             this.labelProgress.Text = "0/100";
             this.labelProgress.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.labelProgress.Visible = false;
+            // 
+            // openFolderDialog
+            // 
+            this.openFolderDialog.CheckFileExists = false;
+            this.openFolderDialog.FileName = "Имя файла будет проигнорировано";
+            this.openFolderDialog.ReadOnlyChecked = true;
+            this.openFolderDialog.ValidateNames = false;
             // 
             // Form1
             // 
@@ -150,9 +187,13 @@ namespace PatternRecognition
         private System.Windows.Forms.ToolStripMenuItem openFileMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openImageDialog;
         private System.Windows.Forms.Label labelProgress;
         private System.Windows.Forms.ToolStripMenuItem trainTheSystemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SelectFolderWithTrainingSampleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectFileWithKeyValuePairsSetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeResultOfLearningToJsonFileToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFolderDialog;
     }
 }
 

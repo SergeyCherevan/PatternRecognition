@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace PatternRecognition
 {
-    public partial class FormDialog : Form
+    public partial class Select_H_W_Dialog : Form
     {
         public int H { get; private set; }
         public int W { get; private set; }
 
-        public FormDialog()
+        public Select_H_W_Dialog()
         {
             InitializeComponent();
         }

@@ -13,20 +13,22 @@ namespace PatternRecognition
 {
     public partial class Form1 : Form
     {
-        FormDialog formDialog = new FormDialog();
+        Select_H_W_Dialog select_H_W_Dialog = new Select_H_W_Dialog();
+
+        ComputationOfSymbolRecognition csr = new ComputationOfSymbolRecognition();
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void openFileMenuItem_Click(object sender, EventArgs e)
+        private void openImageMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
+            DialogResult result = openImageDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                string path = openFileDialog1.FileName;
+                string path = openImageDialog.FileName;
                 pictureBox1.Image = Image.FromFile(path);
             }
             else
@@ -41,12 +43,30 @@ namespace PatternRecognition
 
         Symbol symbol;
 
-        private void trainTheSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SelectFolderWithTrainingSampleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            formDialog.ShowDialog();
-            
-            
+            DialogResult result = openFolderDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string path = openFolderDialog.FileName.Replace(openFolderDialog.SafeFileName, "");
+
+                select_H_W_Dialog.ShowDialog();
+
+                csr.GetMapFromImagesBank(path, select_H_W_Dialog.H, select_H_W_Dialog.W);
+            }
+            else
+            {
+                MessageBox.Show("Папка не выбрана", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        /*private void trainTheSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            
+            
+        }*/
 
 
 
@@ -123,7 +143,7 @@ namespace PatternRecognition
         private void ShowResult(Task task)
         {
             task.ContinueWith(t => {
-                // progressBar1.Visible = false;
+                progressBar1.Visible = false;
                 try
                 {
                     double[,] areas = symbol.GetAreas();
@@ -138,6 +158,29 @@ namespace PatternRecognition
                     MessageBox.Show(ex.Message, ex.GetType().Name);
                 }
             });
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (Mprc?.PatternRecognResult?.locker != null)
+                lock (Mprc.PatternRecognResult.locker)
+                {
+                    progressBar1.Value = Mprc.PatternRecognResult.locker.counter;
+
+
+                    labelProgress.Visible = true;
+
+                    int w = labelProgress.Width;
+
+                    labelProgress.Text = progressBar1.Value + "/" + progressBar1.Maximum;
+
+                    labelProgress.Location = new Point(labelProgress.Location.X - labelProgress.Width + w, labelProgress.Location.Y);
+                }
+
+
+
+            if (progressBar1.Value == progressBar1.Maximum)
+                timer1.Stop();
         }
     }
 }

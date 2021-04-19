@@ -1,7 +1,7 @@
 ﻿
 namespace PatternRecognition
 {
-    partial class FormDialog
+    partial class Select_H_W_Dialog
     {
         /// <summary>
         /// Required designer variable.
@@ -94,7 +94,7 @@ namespace PatternRecognition
             // 
             // buttonTrainTheSystem
             // 
-            this.buttonTrainTheSystem.Location = new System.Drawing.Point(172, 98);
+            this.buttonTrainTheSystem.Location = new System.Drawing.Point(246, 98);
             this.buttonTrainTheSystem.Name = "buttonTrainTheSystem";
             this.buttonTrainTheSystem.Size = new System.Drawing.Size(153, 39);
             this.buttonTrainTheSystem.TabIndex = 50;
@@ -102,17 +102,17 @@ namespace PatternRecognition
             this.buttonTrainTheSystem.UseVisualStyleBackColor = true;
             this.buttonTrainTheSystem.Click += new System.EventHandler(this.buttonTrainTheSystem_Click);
             // 
-            // FormDialog
+            // Select_H_W_Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 149);
+            this.ClientSize = new System.Drawing.Size(411, 149);
             this.Controls.Add(this.buttonTrainTheSystem);
             this.Controls.Add(this.labelCountBlocksByW);
             this.Controls.Add(this.numericUpDownCountBlocksByW);
             this.Controls.Add(this.labelCountBlocksByH);
             this.Controls.Add(this.numericUpDownCountBlocksByH);
-            this.Name = "FormDialog";
+            this.Name = "Select_H_W_Dialog";
             this.Text = "Параметры обучения";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormDialog_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCountBlocksByH)).EndInit();
