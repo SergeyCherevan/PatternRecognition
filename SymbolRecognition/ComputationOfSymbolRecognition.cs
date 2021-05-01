@@ -88,14 +88,6 @@ namespace PatternRecognition
                 mapOfSymbols.AddLast(( symbol.GetAreas(), fileName.Substring(fileName.LastIndexOf("\\") + 1).Replace(".jpg", "") ));
             }
 
-            /*MessageBox.Show(JsonConvert.SerializeObject(
-                    this,
-                    Formatting.Indented,
-                    new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }
-                ),
-                "Результаты обучения"
-                );*/
-
             isValid = true;
 
             MessageBox.Show("Обучение успешно пройдено!", "Сообщение");

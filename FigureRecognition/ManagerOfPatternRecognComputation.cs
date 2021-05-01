@@ -30,25 +30,30 @@ namespace PatternRecognition
 
         /*-----------------*/
 
+        public void SetTypeOfPatternRecognResult()
+        {
+            Type typeOfGenericComputationOfPatternRecognition
+                    = typeof(TemplateComputationOfPatternRecognition<>);
+
+            Type typeOfConstructedComputationOfPatternRecognition
+                = typeOfGenericComputationOfPatternRecognition.MakeGenericType(new Type[] { RO.COLOUR });
+
+            PatternRecognResult = typeOfConstructedComputationOfPatternRecognition
+                .GetConstructor(new Type[] { typeof(RecognitionOptions) })
+                .Invoke(new object[] { RO });
+        }
+
         public void Computate()
         {
             DateTime time = DateTime.Now;
 
             try
             {
-                Type typeOfGenericComputationOfPatternRecognition
-                    = typeof(TemplateComputationOfPatternRecognition<>);
-
-                Type typeOfConstructedComputationOfPatternRecognition
-                    = typeOfGenericComputationOfPatternRecognition.MakeGenericType(new Type[] { RO.COLOUR });
-
-                PatternRecognResult = typeOfConstructedComputationOfPatternRecognition
-                    .GetConstructor(new Type[] { typeof(RecognitionOptions) })
-                    .Invoke(new object[] { RO });
+                SetTypeOfPatternRecognResult();
 
                 PatternRecognResult.CreatePointsArrFromImage(ImageIn);
 
-                PatternRecognResult.CreateFreePixelsAndPixelsM();
+                PatternRecognResult.CreatePixelsM();
 
                 PatternRecognResult.GroupPixelsByFigures();
 

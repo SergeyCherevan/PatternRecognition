@@ -13,17 +13,17 @@ namespace PatternRecognition
     public class TemplateComputationOfPatternRecognition<COLOUR>
         where COLOUR : struct
     {
-        Func<Color, COLOUR> ColourFunc;
-        Predicate<(COLOUR, COLOUR)> DifBeetwinColours;
+        public Func<Color, COLOUR> ColourFunc;
+        public Predicate<(COLOUR, COLOUR)> DifBeetwinColours;
 
-        delegate Pixel<COLOUR> WhichPixelUnionWithDelegate
+        public delegate Pixel<COLOUR> WhichPixelUnionWithDelegate
             (Pixel<COLOUR> p, TemplateComputationOfPatternRecognition<COLOUR> tcpr);
 
-        WhichPixelUnionWithDelegate WhichPixelUnionWith;
+        public WhichPixelUnionWithDelegate WhichPixelUnionWith;
 
-        int CountOfNoiseSuppression;
+        public int CountOfNoiseSuppression;
 
-        bool isContourRecognition;
+        public bool isContourRecognition;
 
         public TemplateComputationOfPatternRecognition(RecognitionOptions ro)
         {
@@ -71,11 +71,11 @@ namespace PatternRecognition
 
         /*-----------------------------------------------------*/
 
-        COLOUR[,] pointsM;
+        public COLOUR[,] pointsM;
 
-        Bitmap bitmapIn = null;
+        public Bitmap bitmapIn = null;
 
-        Bitmap bitmapOut = null;
+        public Bitmap bitmapOut = null;
 
         public void CreatePointsArrFromImage(Image image)
         {
@@ -97,7 +97,7 @@ namespace PatternRecognition
 
         public LinkedList<Figure<COLOUR>> figureList = new LinkedList<Figure<COLOUR>>();
 
-        public void CreateFreePixelsAndPixelsM()
+        public void CreatePixelsM()
         {
             pixelsM = new Pixel<COLOUR>[pointsM.GetLength(0), pointsM.GetLength(1)];
 

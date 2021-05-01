@@ -1,5 +1,5 @@
 ﻿
-namespace ContourRecognition
+namespace PatternRecognition
 {
     partial class Form1
     {
@@ -31,14 +31,14 @@ namespace ContourRecognition
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openCatalogStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelProgress = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFolderDialog = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,9 +61,23 @@ namespace ContourRecognition
             // openCatalogStripMenuItem
             // 
             this.openCatalogStripMenuItem.Name = "openCatalogStripMenuItem";
-            this.openCatalogStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.openCatalogStripMenuItem.Size = new System.Drawing.Size(81, 26);
             this.openCatalogStripMenuItem.Text = "Открыть";
             this.openCatalogStripMenuItem.Click += new System.EventHandler(this.openCatalogStripMenuItem_Click);
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
+            this.backToolStripMenuItem.Text = "← Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.backToolStripMenuItem_Click);
+            // 
+            // nextToolStripMenuItem
+            // 
+            this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(71, 26);
+            this.nextToolStripMenuItem.Text = "Next →";
+            this.nextToolStripMenuItem.Click += new System.EventHandler(this.nextToolStripMenuItem_Click);
             // 
             // labelProgress
             // 
@@ -127,18 +141,6 @@ namespace ContourRecognition
             this.pictureBox3.TabIndex = 56;
             this.pictureBox3.TabStop = false;
             // 
-            // backToolStripMenuItem
-            // 
-            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.backToolStripMenuItem.Text = "← Back";
-            // 
-            // nextToolStripMenuItem
-            // 
-            this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
-            this.nextToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
-            this.nextToolStripMenuItem.Text = "Next →";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -153,6 +155,7 @@ namespace ContourRecognition
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
