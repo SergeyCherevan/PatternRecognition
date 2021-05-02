@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FigureRecognition", "Figure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymbolRecognition", "SymbolRecognition\SymbolRecognition.csproj", "{EEC4BEF9-C01F-4768-9D07-6BFA2EDE51DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourScreenRecognition", "ContourRecognition\FourScreenRecognition.csproj", "{7B2AF9CE-CC3F-4FFA-A7A4-FA82222FCB51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FourScreenRecognition", "FourScreenRecognition\FourScreenRecognition.csproj", "{7B2AF9CE-CC3F-4FFA-A7A4-FA82222FCB51}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E97ACE29-9950-41B0-A7B5-5C015438113B} = {E97ACE29-9950-41B0-A7B5-5C015438113B}
 	EndProjectSection
