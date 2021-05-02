@@ -52,7 +52,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MatrixComputationOfImage.cs" />
+    <Compile Include="ContourRecognitionComputation.cs" />
+    <Compile Include="ImpulseRecognitionComputation.cs" />
+    <Compile Include="MatrixRecognitionComputation.cs" />
     <Compile Include="OptionsOfBlackWhiteRecognition.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

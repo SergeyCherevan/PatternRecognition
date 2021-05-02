@@ -13,17 +13,26 @@ using PatternRecognition.RecognitionOptionsNamespace;
 
 namespace PatternRecognition
 {
-    public partial class Form1 : Form
+    partial class Form1 : Form
     {
         string[] filesOfCatalog = null;
         int numberOfFileInCatalog = 0;
 
         TemplateComputationOfPatternRecognition<double> tcpr;
-        MatrixComputationOfImage mci;
+        MatrixRecognitionComputation mrc;
+        ContourRecognitionComputation crc;
+        ImpulseRecognitionComputation irc;
 
         public Form1()
         {
             InitializeComponent();
+
+            numericUpDownMatrixBias.Increment = 0.05m;
+
+            numericUpDownCoefficient.Increment = 0.05m;
+            numericUpDownCoefficient.Minimum = 0.8m;
+            numericUpDownCoefficient.Maximum = 1.2m;
+            numericUpDownCoefficient.Value = 0.8m;
         }
 
         private void openCatalogStripMenuItem_Click(object sender, EventArgs e)
@@ -46,21 +55,34 @@ namespace PatternRecognition
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            if (filesOfCatalog == null)
+                return;
+
             switch (e.KeyCode)
             {
                 case Keys.Right:
                     numberOfFileInCatalog = (numberOfFileInCatalog + 1) % filesOfCatalog.Length;
+
+                    OperateImage();
                     break;
 
                 case Keys.Left:
                     numberOfFileInCatalog = (numberOfFileInCatalog + filesOfCatalog.Length - 1) % filesOfCatalog.Length;
+
+                    OperateImage();
+                    break;
+
+                case Keys.Enter:
+
+                    OperateImage();
                     break;
             }
-
-            OperateImage();
         }
 
-
+        private void buttonReload_Click(object sender, EventArgs e)
+        {
+            Form1_KeyDown(null, new KeyEventArgs(Keys.Enter));
+        }
 
         private void backToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -74,11 +96,24 @@ namespace PatternRecognition
 
         private void OperateImage()
         {
+            if (filesOfCatalog == null)
+                return;
+
+            this.Cursor = Cursors.WaitCursor;
+
             UploadImageToBox1();
+
+            RecognitionOptions ro = new OptionsOfBlackWhiteRecognition() { isContourRecognition = true };
+            tcpr = new TemplateComputationOfPatternRecognition<double>(ro);
+            tcpr.CreatePointsArrFromImage(pictureBox1.Image);
 
             UploadImageToBox2();
 
             UploadImageToBox3();
+
+            UploadImageToBox4();
+
+            this.Cursor = Cursors.Default;
         }
 
         private void UploadImageToBox1()
@@ -90,35 +125,43 @@ namespace PatternRecognition
 
         private void UploadImageToBox2()
         {
-            RecognitionOptions ro = new OptionsOfBlackWhiteRecognition() { isContourRecognition = true, MaxLen = 250d };
-
-            tcpr = new TemplateComputationOfPatternRecognition<double>(ro);
-
-            mci = new MatrixComputationOfImage(new double[3, 3]
+            mrc = new MatrixRecognitionComputation(new double[3, 3]
             {
                 { -1, -1, -1 },
                 { -1,  8, -1 },
                 { -1, -1, -1 },
             }, 1, 1);
 
-            tcpr.CreatePointsArrFromImage(pictureBox1.Image);
+            double[,] newPoints = mrc.Comp(tcpr.pointsM);
 
-            tcpr.pointsM = mci.Comp(tcpr.pointsM);
-
-            pictureBox2.Image = mci.GetImage(tcpr.pointsM);
+            pictureBox2.Image = mrc.GetImage(newPoints, (double)numericUpDownMatrixBias.Value);
         }
 
         private void UploadImageToBox3()
         {
             try
             {
-                tcpr.CreatePixelsM();
+                crc = new ContourRecognitionComputation((double)numericUpDownDistance.Value);
 
-                tcpr.GroupPixelsByFigures();
+                bool[,] newPoints = crc.Comp(tcpr.pointsM);
 
-                tcpr.ClearFromNoise();
+                pictureBox3.Image = crc.GetImage(newPoints);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nВ стеке вызовов:\n" + ex.StackTrace, ex.GetType().Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-                pictureBox3.Image = tcpr.RecolorImage(new List<Color>());
+        private void UploadImageToBox4()
+        {
+            try
+            {
+                irc = new ImpulseRecognitionComputation((double)numericUpDownCoefficient.Value);
+
+                bool[,] newPoints = irc.Comp(tcpr.pointsM);
+
+                pictureBox4.Image = irc.GetImage(newPoints);
             }
             catch (Exception ex)
             {

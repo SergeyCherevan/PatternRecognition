@@ -13,7 +13,7 @@ using static PatternRecognition.ManagerOfPatternRecognComputation;
 
 namespace PatternRecognition
 {
-    public partial class Form1 : Form
+    partial class Form1 : Form
     {
         public Form1()
         {

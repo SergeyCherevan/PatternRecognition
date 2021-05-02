@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace PatternRecognition
 {
-    public partial class Form1 : Form
+    partial class Form1 : Form
     {
         Select_H_W_Dialog select_H_W_Dialog = new Select_H_W_Dialog();
 

@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace PatternRecognition
 {
-    public class MatrixComputationOfImage
+    public class MatrixRecognitionComputation
     {
-        double[,] matrix;
-        int y, x;
+        public double[,] matrix;
+        public int y, x;
+        
 
-        public MatrixComputationOfImage(double[,] m, int y, int x)
+        public MatrixRecognitionComputation(double[,] m, int y, int x)
         {
             if (y < 0 || y > m.GetLength(0)) 
                 throw new ArgumentOutOfRangeException($"y = {y} is not included in the gap [0, { m.GetLength(0) })");
@@ -71,12 +72,10 @@ namespace PatternRecognition
             return result;
         }
 
-        public Image GetImage(double[,] imageMap)
+        public Image GetImage(double[,] imageMap, double bias)
         {
             int ylen = imageMap.GetLength(0),
-                xlen = imageMap.GetLength(1),
-                ymlen = matrix.GetLength(0),
-                xmlen = matrix.GetLength(1);
+                xlen = imageMap.GetLength(1);
 
 
 
@@ -97,7 +96,10 @@ namespace PatternRecognition
                 {
                     int grayColor = (int) ((imageMap[y, x]/255 - eMin) / (eMax - eMin) * 255);
 
-                    bm.SetPixel(x, y, Color.FromArgb(grayColor, grayColor, grayColor) );
+                    if (grayColor >= 256 * 1/2 + bias)
+                        bm.SetPixel(x, y, Color.Black);
+                    else                    
+                        bm.SetPixel(x, y, Color.White);
                 }
             }
 
